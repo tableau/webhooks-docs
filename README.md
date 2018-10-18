@@ -164,57 +164,13 @@ succeeded, refresh failed, created, deleted, updated) are the same:  
 
 }
 ```
-
-<table>
-<thead>
-<tr class="header">
-<th><strong>Field </strong> </th>
-<th><strong>Description </strong> </th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>resource </strong> </td>
-<td>Will always be “DATASOURCE” for datasource events.  </td>
-</tr>
-<tr class="even">
-<td><strong>event-type </strong> </td>
-<td><p>Type of event that occurred. Can be one of:  </p>
-<ul>
-<li>
-<p>DatasourceRefreshStarted</p>
-</li>
-<li>
-<p>DatasourceRefreshSucceeded</p>
-</li>
-<li>
-<p>DatasourceRefreshFailed</p>
-</li>
-<li>
-<p>DatasourceCreated</p>
-</li>
-<li>
-<p>DatasourceDeleted</p>
-</li>
-<li>
-<p>DatasourceUpdated</p>
-</li>
-</ul></td>
-</tr>
-<tr class="odd">
-<td><strong>resource-name </strong> </td>
-<td>Name of the datasource in question.  </td>
-</tr>
-<tr class="even">
-<td><strong>site-id </strong> </td>
-<td>LUID for the site that contains the datasource.  </td>
-</tr>
-<tr class="odd">
-<td><strong>resource-id </strong> </td>
-<td>The datasource ID.  </td>
-</tr>
-</tbody>
-</table>
+| Field         | Description                                                                          |
+| ------------------ | ----------------------------------------------------------------------------------------- |
+| resource           | Will always be “DATASOURCE” for datasource events.                                        |
+| event-type         | Type of event that occurred. Can be DatasourceRefreshStarted, DatasourceRefreshSucceeded, DatasourceRefreshFailed, DatasourceCreated, DatasourceDeleted, or DatasourceUpdated. |
+| resource-name      | Name of the datasource in question.                                                       |
+| site-id            | LUID for the site that contains the datasource.                                           |
+| resource-id        | The datasource ID.                                                                        |
 
 ### Workbook Events  
 
@@ -260,90 +216,59 @@ The Tableau Server REST API requires that you send an authentication token, in
 
 Creates a new webhook for a site.  
 
-<table>
-<thead>
-<tr class="header">
-<th>  <br />
-<strong>URI</strong>  </th>
-<th>POST /api/<em>exp</em>/sites/<em>site-id</em>/webhooks  </th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Parameter Values</strong>  </td>
-<td><table>
-<tbody>
-<tr class="odd">
-<td><em>site-id</em>  </td>
-<td>The ID of the site to create the webhook in.  </td>
-</tr>
-</tbody>
-</table>
-<p>  </p></td>
-</tr>
-<tr class="even">
-<td><strong>Request Body</strong>  </td>
-<td><p>&lt;tsRequest&gt;  </p>
-<p>  &lt;webhook name=&quot;<em><strong>webhook-name</strong></em>&quot;&gt;  </p>
-<p>    &lt;webhook-source&gt;  </p>
-<p>      &lt;<em><strong>webhook-source-event-name</strong></em> /&gt;  </p>
-<p>    &lt;/webhook-source&gt;  </p>
-<p>    &lt;webhook-destination&gt;  </p>
-<p>      &lt;webhook-destination-http method=&quot;POST&quot; url=&quot;<em><strong>url</strong></em>&quot; /&gt;  </p>
-<p>    &lt;/webhook-destination&gt;  </p>
-<p>  &lt;/webhook&gt;  </p>
-<p>&lt;/tsRequest&gt;  </p></td>
-</tr>
-<tr class="odd">
-<td><strong>Attribute Values</strong>  </td>
-<td><table>
-<thead>
-<tr class="header">
-<th><em>webhook-name</em>  </th>
-<th>A name for the webhook.   </th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><em>webhook-source-event-name</em>  </td>
-<td>The API event name for the source event. It must be one of the supported events, such as, &lt;webhook-source-event-datasource-refresh-started /&gt;  </td>
-</tr>
-<tr class="even">
-<td><em>url</em>  </td>
-<td>The destination URL for the webhook.  </td>
-</tr>
-</tbody>
-</table>
-<p>  </p></td>
-</tr>
-<tr class="even">
-<td><strong>Response Code</strong>  </td>
-<td>201  </td>
-</tr>
-<tr class="odd">
-<td><strong>Response Body</strong>  </td>
-<td><p>&lt;tsResponse&gt;  </p>
-<p>    &lt;webhook id=&quot;<em>webhook-id</em>&quot; name=&quot;<em>webhook-name</em>&quot;&gt;  </p>
-<p>        &lt;webhook-source&gt;  </p>
-<p>            &lt;<em>webhook-source-event-name</em> /&gt;  </p>
-<p>        &lt;/webhook-source&gt;  </p>
-<p>        &lt;webhook-destination&gt;  </p>
-<p>            &lt;webhook-destination-http method=&quot;POST&quot; url=&quot;<em><strong>url</strong></em>&quot;/&gt;  </p>
-<p>        &lt;/webhook-destination&gt;  </p>
-<p>    &lt;/webhook&gt;  </p>
-<p>&lt;/tsResponse&gt;  </p></td>
-</tr>
-<tr class="even">
-<td><strong>Response Headers</strong>  </td>
-<td>Location: /api/<em>api-version</em>/sites/<em>site-id</em>/webhooks/<em>new-webhook-id</em>  </td>
-</tr>
-<tr class="odd">
-<td>  </td>
-<td><p>  </p>
-<p>  </p></td>
-</tr>
-</tbody>
-</table>
+#### URI
+
+`POST /api/exp/sites/site-id/webhooks`
+
+#### Parameter Values
+
+`site-id` The ID of the site to create the webhook in.  
+  
+#### Request Body
+
+```
+<tsRequest>  
+  <webhook name="webhook-name">  
+    <webhook-source>  
+      <webhook-source-event-name />  
+    </webhook-source>  
+    <webhook-destination>  
+      <webhook-destination-http method="POST" url="url" />  
+    </webhook-destination>  
+  </webhook>  
+</tsRequest>
+```
+
+#### Attribute Values
+
+`webhook-name`   A name for the webhook.
+
+`webhook-source-event-name`   The API event name for the source event. It must be one of the supported events, such as, \<webhook-source-event-datasource-refresh-started />  
+
+`url`   The destination URL for the webhook.  
+  
+#### Response Code
+
+`201`  
+
+#### Response Body
+
+```
+<tsResponse>  
+    <webhook id="webhook-id" name="webhook-name">  
+        <webhook-source>  
+            <webhook-source-event-name />  
+        </webhook-source>  
+        <webhook-destination>  
+            <webhook-destination-http method="POST" url="url"/>  
+        </webhook-destination>  
+    </webhook>  
+</tsResponse>
+```
+
+#### Response Headers
+
+`Location: /api/api-version/sites/site-id/webhooks/new-webhook-id`  
 
 ### Get a Webhook  
 
