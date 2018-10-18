@@ -272,222 +272,137 @@ Creates a new webhook for a site.  
 
 ### Get a Webhook  
 
-Returns information about the specified webhook.  
+Returns information about the specified webhook.  
 
-<table>
-<thead>
-<tr class="header">
-<th>  <br />
-<strong>URI</strong>  </th>
-<th>GET /api/<em>exp</em>/sites/<em>site-id</em>/webhooks/<em>webhook-id</em>  </th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Parameter Values</strong>  </td>
-<td><table>
-<thead>
-<tr class="header">
-<th><em>site-id</em>  </th>
-<th>The ID of the site that contains the webhook.  </th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><em>webhook-id</em>  </td>
-<td>The ID of the webhook to get information for.  </td>
-</tr>
-</tbody>
-</table>
-<p>  </p></td>
-</tr>
-<tr class="even">
-<td><strong>Request Body</strong>  </td>
-<td>None  </td>
-</tr>
-<tr class="odd">
-<td><strong>Response Code</strong>  </td>
-<td>200  </td>
-</tr>
-<tr class="even">
-<td><strong>Response Body</strong>  </td>
-<td><p>&lt;tsResponse&gt;  </p>
-<p>    &lt;webhook id=&quot;<em>webhook-id</em>&quot; name=&quot;<em>webhook-name</em>&quot;&gt;  </p>
-<p>        &lt;webhook-source&gt;  </p>
-<p>            &lt;<em>webhook-source-event-name</em> /&gt;  </p>
-<p>        &lt;/webhook-source&gt;  </p>
-<p>        &lt;webhook-destination&gt;  </p>
-<p>            &lt;webhook-destination-http method=&quot;POST&quot; url=&quot;<em>url</em>&quot;/&gt;  </p>
-<p>        &lt;/webhook-destination&gt;  </p>
-<p>    &lt;/webhook&gt;  </p>
-<p>&lt;/tsResponse&gt;  </p></td>
-</tr>
-<tr class="odd">
-<td>  </td>
-<td>  </td>
-</tr>
-</tbody>
-</table>
+#### URI
+
+`GET /api/exp/sites/site-id/webhooks/webhook-id`
+
+#### Parameter Values
+
+`site-id`   The ID of the site that contains the webhook.
+
+`webhook-id`   The ID of the webhook to get information for.  
+  
+#### Request Body
+
+None  
+
+#### Response Code
+
+`200`
+  
+#### Response Body
+
+```
+<tsResponse>  
+    <webhook id="webhook-id" name="webhook-name">  
+        <webhook-source>  
+            <webhook-source-event-name />  
+        </webhook-source>  
+        <webhook-destination>  
+            <webhook-destination-http method="POST" url="url"/>  
+        </webhook-destination>  
+    </webhook>  
+</tsResponse>
+```
 
 ### List Webhooks
 
-Returns a list of all the webhooks on the specified site.  
+Returns a list of all the webhooks on the specified site.  
 
-<table>
-<thead>
-<tr class="header">
-<th>  <br />
-<strong>URI</strong>  </th>
-<th>GET /api/<em>exp</em>/sites/<em>site-id</em>/webhooks  </th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Parameter Values</strong>  </td>
-<td><table>
-<tbody>
-<tr class="odd">
-<td><em>site-id</em>  </td>
-<td>The ID of the site that contains the webhooks.  </td>
-</tr>
-</tbody>
-</table>
-<p>  </p></td>
-</tr>
-<tr class="even">
-<td><strong>Request Body</strong>  </td>
-<td>None  </td>
-</tr>
-<tr class="odd">
-<td><strong>Response Code</strong>  </td>
-<td>200  </td>
-</tr>
-<tr class="even">
-<td><strong>Response Body</strong>  </td>
-<td><p>&lt;tsResponse&gt;  </p>
-<p>   &lt;webhooks&gt;  </p>
-<p>      &lt;webhook id=&quot;<em>webhook-id</em>&quot; name=&quot;<em>webhook-name</em>&quot;&gt;  </p>
-<p>        &lt;webhook-source&gt;  </p>
-<p>            &lt;<em>webhook-source-event-name</em> /&gt;  </p>
-<p>        &lt;/webhook-source&gt;  </p>
-<p>        &lt;webhook-destination&gt;  </p>
-<p>            &lt;webhook-destination-http method=&quot;POST&quot; url=&quot;<em>url</em>&quot;/&gt;  </p>
-<p>        &lt;/webhook-destination&gt;  </p>
-<p>       &lt;/webhook&gt;  </p>
-<p>      ... additional webhooks ...  </p>
-<p>   &lt;/webhooks&gt;  </p>
-<p>&lt;/tsResponse&gt;  </p></td>
-</tr>
-<tr class="odd">
-<td>  </td>
-<td>  </td>
-</tr>
-</tbody>
-</table>
+#### URI
 
-### Test a Webhook  
+`GET /api/exp/sites/site-id/webhooks`
+  
+#### Parameter Values
 
-Tests the specified webhook. Sends an empty payload to the configured
-destination URL of the webhook and returns the response
-from the server. This is useful for testing, to ensure that things
-are being sent from Tableau and received back as expected.  
+`site-id`   The ID of the site that contains the webhooks.  
+  
+#### Request Body
 
-<table>
-<thead>
-<tr class="header">
-<th>  <br />
-<strong>URI</strong>  </th>
-<th>GET /api/<em>exp</em>/sites/<em>site-id</em>/webhooks/<em>webhook-id/</em>test  </th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Parameter Values</strong>  </td>
-<td><table>
-<thead>
-<tr class="header">
-<th><em>site-id</em>  </th>
-<th>The ID of the site that contains the webhook.  </th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><em>webhook-id</em>  </td>
-<td>The ID of the webhook to test.  </td>
-</tr>
-</tbody>
-</table>
-<p>  </p></td>
-</tr>
-<tr class="even">
-<td><strong>Request Body</strong>  </td>
-<td>None  </td>
-</tr>
-<tr class="odd">
-<td><strong>Response Code</strong>  </td>
-<td>200  </td>
-</tr>
-<tr class="even">
-<td><strong>Response Body</strong>  </td>
-<td><p>&lt;tsResponse&gt;  </p>
-<p>    &lt;webhookTestResult id=&quot;9f9bcaf8-8c4c-403c-b7e1-10dd85620f00&quot; status=&quot;200&quot;&gt;      </p>
-<p>       &lt;body&gt;&lt;/body&gt;  </p>
-<p>    &lt;/webhookTestResult&gt;  </p>
-<p>&lt;/tsResponse&gt;  </p></td>
-</tr>
-</tbody>
-</table>
+None  
 
-### Delete a Webhook  
+#### Response Code
 
-Deletes the specified webhook.  
+`200`
 
-<table>
-<thead>
-<tr class="header">
-<th>  <br />
-<strong>URI</strong>  </th>
-<th>DELETE /api/<em>exp</em>/sites/<em>site-id</em>/webhooks/<em>webhook-id</em>  </th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Parameter Values</strong>  </td>
-<td><table>
-<thead>
-<tr class="header">
-<th><em>site-id</em>  </th>
-<th>The ID of the site that contains the webhook.  </th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><em>webhook-id</em>  </td>
-<td>The ID of the webhook to delete.  </td>
-</tr>
-</tbody>
-</table>
-<p>  </p></td>
-</tr>
-<tr class="even">
-<td><strong>Request Body</strong>  </td>
-<td>None  </td>
-</tr>
-<tr class="odd">
-<td><strong>Response Code</strong>  </td>
-<td>204  </td>
-</tr>
-<tr class="even">
-<td><strong>Response Body</strong>  </td>
-<td>None  </td>
-</tr>
-<tr class="odd">
-<td>  </td>
-<td>  </td>
-</tr>
-</tbody>
-</table>
+#### Response Body
 
-### Update a Webhook  
+```
+<tsResponse>  
+   <webhooks>  
+      <webhook id="webhook-id" name="webhook-name">  
+        <webhook-source>  
+            <webhook-source-event-name />  
+        </webhook-source>  
+        <webhook-destination>  
+            <webhook-destination-http method="POST" url="url"/>  
+        </webhook-destination>  
+       </webhook>  
+      ... additional webhooks ...  
+   </webhooks>  
+</tsResponse>  
+```
+
+### Test a Webhook
+
+Tests the specified webhook. Sends an empty payload to the configured destination URL of the webhook and returns the response from the server. This is useful for testing, to ensure that things are being sent from Tableau and received back as expected.  
+
+#### URI
+
+`GET /api/exp/sites/site-id/webhooks/webhook-id/test`
+
+#### Parameter Values
+
+`site-id`   The ID of the site that contains the webhook.
+
+`webhook-id`   The ID of the webhook to test.  
+
+#### Request Body
+
+None  
+
+#### Response Code
+
+`200`
+
+#### Response Body
+
+```
+<tsResponse>  
+    <webhookTestResult id="9f9bcaf8-8c4c-403c-b7e1-10dd85620f00" status="200">
+       <body></body>  
+    </webhookTestResult>  
+</tsResponse>  
+```
+
+### Delete a Webhook  
+
+Deletes the specified webhook.  
+
+#### URI
+
+`DELETE /api/exp/sites/site-id/webhooks/webhook-id`
+
+#### Parameter Values
+
+`site-id`   The ID of the site that contains the webhook.  
+
+`webhook-id`   The ID of the webhook to delete.  
+  
+#### Request Body
+
+None  
+
+#### Response Code
+
+`204`
+
+#### Response Body
+
+None  
+
+### Update a Webhook  
 
 To modify a webhook after it has been created, delete it and recreate it.
