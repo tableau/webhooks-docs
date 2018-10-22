@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ed6e3961-6d68-4d90-92f0-2cfa6e035bed",
+		"_postman_id": "0eb900f9-b3ec-414c-a03c-276ce9e85281",
 		"name": "Postman collection for Tableau Webhooks",
 		"description": "Work with the developer preview of webhooks for Tableau. This collection contains all REST API calls needed to create, delete, list, and test webhooks. Syntax is provided for both XML and JSON payloads. For convenience the collection also contains variables that you need to set for your server and, after signin, the site ID and auth token.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -25,7 +25,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"credentials\": {\r\n     \"site\": {\r\n        \"contentUrl\": \"\"\r\n     },\r\n     \"name\": \"admin\",\r\n     \"password\": \"test\"\r\n  }\r\n}"
+							"raw": "{\r\n  \"credentials\": {\r\n     \"site\": {\r\n        \"contentUrl\": \"\"\r\n     },\r\n     \"name\": \"<Replace_Me>\",\r\n     \"password\": \"<Replace_Me>\"\r\n  }\r\n}"
 						},
 						"url": {
 							"raw": "{{Tableau_Server}}/api/3.1/auth/signin",
@@ -57,7 +57,10 @@
 								"value": "application/json"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "{{Tableau_Server}}/{{REST_API_Version}}/sites/{{Site_ID}}/webhooks",
 							"host": [
@@ -88,9 +91,12 @@
 								"value": "application/json"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{Tableau_Server}}/{{REST_API_Version}}/sites/{{Site_ID}}/webhooks/2ea08026-994c-431e-b3db-4a3339304bfd",
+							"raw": "{{Tableau_Server}}/{{REST_API_Version}}/sites/{{Site_ID}}/webhooks/{{Webhook_ID}}",
 							"host": [
 								"{{Tableau_Server}}"
 							],
@@ -99,7 +105,7 @@
 								"sites",
 								"{{Site_ID}}",
 								"webhooks",
-								"2ea08026-994c-431e-b3db-4a3339304bfd"
+								"{{Webhook_ID}}"
 							]
 						},
 						"description": "Gets a single webhook by its ID."
@@ -158,9 +164,12 @@
 								"value": "application/json"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{Tableau_Server}}/{{REST_API_Version}}/sites/{{Site_ID}}/webhooks/685e3b6c-8a03-470f-b4b6-f2cc0e35d405",
+							"raw": "{{Tableau_Server}}/{{REST_API_Version}}/sites/{{Site_ID}}/webhooks/{{Webhook_ID}}",
 							"host": [
 								"{{Tableau_Server}}"
 							],
@@ -169,7 +178,7 @@
 								"sites",
 								"{{Site_ID}}",
 								"webhooks",
-								"685e3b6c-8a03-470f-b4b6-f2cc0e35d405"
+								"{{Webhook_ID}}"
 							]
 						},
 						"description": "Delete a single webhook by its ID."
@@ -190,9 +199,12 @@
 								"value": "application/json"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{Tableau_Server}}/{{REST_API_Version}}/sites/{{Site_ID}}/webhooks/bf29cd1d-69f8-4b87-9a49-c95798b7b790/test",
+							"raw": "{{Tableau_Server}}/{{REST_API_Version}}/sites/{{Site_ID}}/webhooks/{{Webhook_ID}}/test",
 							"host": [
 								"{{Tableau_Server}}"
 							],
@@ -201,7 +213,7 @@
 								"sites",
 								"{{Site_ID}}",
 								"webhooks",
-								"bf29cd1d-69f8-4b87-9a49-c95798b7b790",
+								"{{Webhook_ID}}",
 								"test"
 							]
 						},
@@ -221,7 +233,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "<tsRequest>\r\n  <credentials name=\"test\" password=\"test\" >\r\n    <site contentUrl=\"\" />\r\n  </credentials>\r\n</tsRequest>"
+							"raw": "<tsRequest>\r\n  <credentials name=\"<Replace_Me>\" password=\"<Replace_Me>\" >\r\n    <site contentUrl=\"\" />\r\n  </credentials>\r\n</tsRequest>"
 						},
 						"url": {
 							"raw": "{{Tableau_Server}}/api/3.1/auth/signin",
@@ -279,9 +291,12 @@
 								"value": "{{Tableau_Auth_Token}}"
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "{{Tableau_Server}}/{{REST_API_Version}}/sites/{{Site_ID}}/webhooks/2ea08026-994c-431e-b3db-4a3339304bfd",
+							"raw": "{{Tableau_Server}}/{{REST_API_Version}}/sites/{{Site_ID}}/webhooks/{{Webhook_ID}}",
 							"host": [
 								"{{Tableau_Server}}"
 							],
@@ -290,7 +305,7 @@
 								"sites",
 								"{{Site_ID}}",
 								"webhooks",
-								"2ea08026-994c-431e-b3db-4a3339304bfd"
+								"{{Webhook_ID}}"
 							]
 						},
 						"description": "Gets a single webhook by its ID."
@@ -346,7 +361,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{Tableau_Server}}/{{REST_API_Version}}/sites/{{Site_ID}}/webhooks/2496c0e5-a15a-4e8f-ab98-c275680493b9",
+							"raw": "{{Tableau_Server}}/{{REST_API_Version}}/sites/{{Site_ID}}/webhooks/{{Webhook_ID}}",
 							"host": [
 								"{{Tableau_Server}}"
 							],
@@ -355,7 +370,7 @@
 								"sites",
 								"{{Site_ID}}",
 								"webhooks",
-								"2496c0e5-a15a-4e8f-ab98-c275680493b9"
+								"{{Webhook_ID}}"
 							]
 						},
 						"description": "Delete a single webhook by its ID."
@@ -374,10 +389,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "<tsRequest>\n  <webhook id=\"7dd3b99d-081b-441d-88aa-40cf1273afee\">\n  </webhook>\n</tsRequest>\n\n    "
+							"raw": ""
 						},
 						"url": {
-							"raw": "{{Tableau_Server}}/{{REST_API_Version}}/sites/{{Site_ID}}/webhooks/685e3b6c-8a03-470f-b4b6-f2cc0e35d405/test",
+							"raw": "{{Tableau_Server}}/{{REST_API_Version}}/sites/{{Site_ID}}/webhooks/{{Webhook_ID}}/test",
 							"host": [
 								"{{Tableau_Server}}"
 							],
@@ -386,7 +401,7 @@
 								"sites",
 								"{{Site_ID}}",
 								"webhooks",
-								"685e3b6c-8a03-470f-b4b6-f2cc0e35d405",
+								"{{Webhook_ID}}",
 								"test"
 							]
 						},
@@ -422,27 +437,33 @@
 	],
 	"variable": [
 		{
-			"id": "f1ab156c-af80-4336-a90a-76e9b31daf10",
+			"id": "872b614f-573b-4a40-a802-da5f5c0ece83",
 			"key": "Tableau_Server",
 			"value": "http://localhost/",
 			"type": "string"
 		},
 		{
-			"id": "7592f955-868e-4e6b-b7a0-87d5da0be12b",
+			"id": "1d84b25c-90d8-4aaf-a911-ec131e47d0fb",
 			"key": "REST_API_Version",
 			"value": "api/exp/",
 			"type": "string"
 		},
 		{
-			"id": "e96d659c-3e73-47a3-ba88-47d092605a25",
+			"id": "7892404b-49a0-4c3d-9732-a4c324d4079b",
 			"key": "Site_ID",
-			"value": "12345",
+			"value": "<Replace_Me>",
 			"type": "string"
 		},
 		{
-			"id": "78ef18fa-6b1f-4bd3-92a6-23376f55fc75",
+			"id": "b9191936-2d41-44e7-a24a-4d6f3c5fb5b5",
 			"key": "Tableau_Auth_Token",
-			"value": "12345",
+			"value": "<Replace_Me>",
+			"type": "string"
+		},
+		{
+			"id": "265aa85d-45aa-4405-ae70-43398b4909a6",
+			"key": "Webhook_ID",
+			"value": "<Replace_Me>",
 			"type": "string"
 		}
 	]
