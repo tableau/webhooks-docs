@@ -31,7 +31,7 @@ To use Tableau webhooks, you must:
 Here is an example of setting up a webhook with the REST API
 using Postman.
 
-1. Download the file [Postman Collection - Tableau Webhooks.json](tbd)
+1. Download the file [Postman-Collection-Tableau-Webhooks.json](Postman-Collection-Tableau-Webhooks.json)
 
 1. Download Postman from [https://www.getpostman.com/](https://www.getpostman.com/)
 
