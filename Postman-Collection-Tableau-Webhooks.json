@@ -11,6 +11,25 @@
 			"item": [
 				{
 					"name": "Sign-in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6e4d3cd4-838a-4355-9e9f-70c1b3aee7c7",
+								"exec": [
+									"var response = JSON.parse(responseBody);",
+									"",
+									"// Set the Site_ID environment variable to what we get back from the response",
+									"pm.environment.set(\"Site_ID\", response.credentials.site.id);",
+									"",
+									"// Set the Tableau_Auth_Token environment variable to what we get back from the response",
+									"pm.environment.set(\"Tableau_Auth_Token\", response.credentials.token);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -25,7 +44,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"credentials\": {\r\n     \"site\": {\r\n        \"contentUrl\": \"\"\r\n     },\r\n     \"name\": \"<Replace_Me>\",\r\n     \"password\": \"<Replace_Me>\"\r\n  }\r\n}"
+							"raw": "{\r\n  \"credentials\": {\r\n     \"site\": {\r\n        \"contentUrl\": \"{{Site_Name}}\"\r\n     },\r\n     \"name\": \"{{User_Name}}\",\r\n     \"password\": \"{{Password}}\"\r\n  }\r\n}"
 						},
 						"url": {
 							"raw": "{{Tableau_Server}}/api/3.1/auth/signin",
@@ -228,12 +247,31 @@
 			"item": [
 				{
 					"name": "Sign-in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b7926a92-051b-494c-8386-204412bdeab9",
+								"exec": [
+									"var response = xml2Json(responseBody);",
+									"",
+									"// Set the Site_ID environment variable to what we get back from the response",
+									"pm.environment.set(\"Site_ID\", response.tsResponse.credentials.site.$.id);",
+									"",
+									"// Set the Tableau_Auth_Token environment variable to what we get back from the response",
+									"pm.environment.set(\"Tableau_Auth_Token\", response.tsResponse.credentials.$.token);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "<tsRequest>\r\n  <credentials name=\"<Replace_Me>\" password=\"<Replace_Me>\" >\r\n    <site contentUrl=\"\" />\r\n  </credentials>\r\n</tsRequest>"
+							"raw": "<tsRequest>\r\n  <credentials name=\"{{User_Name}}\" password=\"{{Password}}\" >\r\n    <site contentUrl=\"{{Site_Name}}\" />\r\n  </credentials>\r\n</tsRequest>"
 						},
 						"url": {
 							"raw": "{{Tableau_Server}}/api/3.1/auth/signin",
@@ -437,31 +475,31 @@
 	],
 	"variable": [
 		{
-			"id": "872b614f-573b-4a40-a802-da5f5c0ece83",
+			"id": "9d43a395-d1ba-4304-83c6-8e93ae390826",
 			"key": "Tableau_Server",
 			"value": "http://localhost/",
 			"type": "string"
 		},
 		{
-			"id": "1d84b25c-90d8-4aaf-a911-ec131e47d0fb",
+			"id": "80dc12fe-58c6-49cd-aafa-38808db5bd54",
 			"key": "REST_API_Version",
 			"value": "api/exp/",
 			"type": "string"
 		},
 		{
-			"id": "7892404b-49a0-4c3d-9732-a4c324d4079b",
+			"id": "dd7d60f1-4b3b-4969-920f-2db533ae444e",
 			"key": "Site_ID",
 			"value": "<Replace_Me>",
 			"type": "string"
 		},
 		{
-			"id": "b9191936-2d41-44e7-a24a-4d6f3c5fb5b5",
+			"id": "787f8292-952d-4ec4-ae0a-1cfd004c9670",
 			"key": "Tableau_Auth_Token",
 			"value": "<Replace_Me>",
 			"type": "string"
 		},
 		{
-			"id": "265aa85d-45aa-4405-ae70-43398b4909a6",
+			"id": "9c14ba14-cd85-4610-a674-8dc5c0dd4c78",
 			"key": "Webhook_ID",
 			"value": "<Replace_Me>",
 			"type": "string"
