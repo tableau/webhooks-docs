@@ -20,7 +20,7 @@ additional information or take further action.  
 
 To use Tableau webhooks, you must:
 
-- enroll in the developer preview of the webhooks feature.  
+- enroll in the developer preview of the webhooks feature by joining the [Tableau Developer Program](https://www.tableau.com/developer).  
 
 - connect to the Tableau Online instance where the webhooks feature is enabled, [https://10ax.online.tableau.com](https://10ax.online.tableau.com/).  
 
@@ -31,23 +31,25 @@ To use Tableau webhooks, you must:
 Here is an example of setting up a webhook with the REST API
 using Postman.
 
-1. Download the file [Postman-Collection-Tableau-Webhooks.json](Postman-Collection-Tableau-Webhooks.json)
+1. Download the [Postman-Collection-Tableau-Webhooks.json](Postman-Collection-Tableau-Webhooks.json) and [Tableau-Webhooks.postman_environment.json](Tableau-Webhooks.postman_environment.json) files.
 
 1. Download Postman from [https://www.getpostman.com/](https://www.getpostman.com/)
 
 1. Launch Postman.
 
-1. Click **File** \> **Import** and choose the Postman collection you downloaded. The collection appears on the left.
+1. Click **File** \> **Import** and choose the Postman-Collection-Tableau-Webhooks.json and the Tableau-Webhooks.postman_environment.json files you downloaded. The collection appears on the left.
 
-1. To configure the variables in the collection, click the ellipsis beside the collection name in the left sidebar.
+1. To set the Tableau Webhooks environment that you imported as the active environment, click the dropdown menu in the upper right corner of the Postman app and select **Tableau Webhooks**.
 
-1. Click **Edit**.
+1. Click the eye-shaped Environment Quick Look icon in the upper right corner of the Postman app to display the environment and global variables.
 
-1. Click the **Variables** tab, change the Tableau\_Server variable to the correct server. Click **Update**.
+1. Click the **Edit** link in the Tableau Webhooks section.
+
+1. Change the Tableau\_Server variable to the correct server. Click **Update**. Close the Manage Environments window.
 
 1. In the list of requests, click **Sign-in** and then click **Send**. The response body contains the site id and a token.  
 
-1. Click the **Variables** tab and set the Site\_ID and Tableau\_Auth\_Token variables.
+1. Click the eye-shaped Environment Quick Look icon in the upper right corner of the Postman app and set the Site\_ID and Tableau\_Auth\_Token variables.
 
 1. In the list of requests, click **Create a webhook**. In the request body, change the webhook name and url. Click **Send**. The ID of the new webhook is returned in the response body.
 
