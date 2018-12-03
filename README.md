@@ -49,7 +49,9 @@ using Postman.
 
 1. Click the **Variables** tab and set the Site\_ID and Tableau\_Auth\_Token variables.
 
-1. In the list of requests, click **Create a webhook**. In the request body, change the webhook name and url. Click **Send**. The ID of the new webhook is returned in the response body.
+1. In the list of requests, click **Create a webhook**. In the request body, change the webhook **name** and **url**. The webhook destination URL must be https and have a valid certificate.
+
+1. Click **Send**. The ID of the new webhook is returned in the response body.
 
 1. In the list of requests, click **Test a webhook**. Set the webhook ID to test in the variables or in the URI and then click **Send**. Testing the webhook sends an empty payload to the configured destination URL of the webhook and returns the response from the server. This is useful for testing, to ensure that things are being sent from Tableau and received back as expected.
 
@@ -106,7 +108,7 @@ Content of details.xml:
 </tsRequest>
 ```
 
-Replace URL with the destination URL for the webhook.
+Replace URL with the destination URL for the webhook. The webhook destination URL must be https and have a valid certificate.
 
 ### Test the Webhook
 
@@ -245,7 +247,7 @@ Creates a new webhook for a site.  
 
 `webhook-source-event-name`   The API event name for the source event. It must be one of the supported events, such as, \<webhook-source-event-datasource-refresh-started />  
 
-`url`   The destination URL for the webhook.  
+`url`   The destination URL for the webhook. The webhook destination URL must be https and have a valid certificate.
   
 #### Response Code
 
