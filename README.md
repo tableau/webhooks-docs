@@ -14,17 +14,13 @@ when the event occurs, an HTTP POST request will be sent to the public
 URL you specified. This POST request includes a JSON payload that
 includes information about the event. The payload includes the ID of the
 object in question so that the Tableau REST API can be used to get
-additional information or take further action.  
+additional information or take further action. 
+
+Learn more about [Tableau Webhooks Behavior](#behavior). 
 
 ## Prerequisites  
 
-To use Tableau webhooks, you must:
-
-- enroll in the developer preview of the webhooks feature.  
-
-- connect to the Tableau Online instance where the webhooks feature is enabled, [https://10ax.online.tableau.com](https://10ax.online.tableau.com/).  
-
-- be a site administrator.
+To use Tableau webhooks, you must be authenticated as a site administrator for the Tableau Online instance where the webhooks feature is enabled, for example, [https://10ax.online.tableau.com](https://10ax.online.tableau.com/). 
 
 ## Set Up a Webhook Using Postman
 
@@ -33,11 +29,11 @@ using Postman.
 
 1. Download the file [Postman-Collection-Tableau-Webhooks.json](Postman-Collection-Tableau-Webhooks.json)
 
-1. Download Postman from [https://www.getpostman.com/](https://www.getpostman.com/)
+1. Download and install Postman from [https://www.getpostman.com/](https://www.getpostman.com/)
 
 1. Launch Postman.
 
-1. Click **File** \> **Import** and choose the Postman collection you downloaded. The collection appears on the left.
+1. Click **File** \> **Import** and then choose the Postman collection you downloaded. The collection appears on the left.
 
 1. To configure the variables in the collection, click the ellipsis beside the collection name in the left sidebar.
 
@@ -140,6 +136,9 @@ For the initial release of the developer preview of webhooks, these events are s
 | Workbook Updated             | webhook-source-event-workbook-updated             |
 | Workbook Created             | webhook-source-event-workbook-created             |
 | Workbook Deleted             | webhook-source-event-workbook-deleted             |
+| Workbook Refresh Started     | webhook-source-event-workbook-refresh-started     |
+| Workbook Refresh Succeeded   | webhook-source-event-workbook-refresh-succeededed |
+| Workbook Refresh Failed      | webhook-source-event-workbook-refresh-failed      | 
 
 ## Payloads  
 
@@ -408,3 +407,9 @@ None 
 ### Update a Webhook  
 
 To modify a webhook after it has been created, delete it and recreate it.
+
+## <a id="behavior"></a>Tableau Webhooks Behavior
+
+- When a server that has been sent a webhook request does not reply with a success code, the webhook will retry the request with diminishing frequency. 
+
+- Since it is possible that more than one message will be received by the destination URL server for the same webhook request, we recommend that you parse incoming webhook requests to filter duplicates. The timestamp, message type, and content of the messages will all be identical. 
