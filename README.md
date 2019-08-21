@@ -1,6 +1,15 @@
 # Webhooks Documentation (Developer Preview)
 
-## Introduction  
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [Set Up a Webhook Using Postman](#postman)
+- [Set Up a Wbhook Using cURL](#curl)
+- [Events](#events)
+- [Payloads](#payloads)
+- [Tableau Server REST API Endpoints for Webhooks](#endpoints)
+- [Tableau Webhooks Behavior](#behavior)
+
+## <a id="introduction"></a>Introduction  
 
 Webhooks let you build custom applications or workflows that react
 to events that happen in Tableau Online. For example, you could use
@@ -18,11 +27,11 @@ additional information or take further action. 
 
 Learn more about [Tableau Webhooks Behavior](#behavior). 
 
-## Prerequisites  
+## <a id="prerequisites"></a>Prerequisites  
 
 To use Tableau webhooks, you must be authenticated as a site administrator for the Tableau Online instance where the webhooks feature is enabled, for example, [https://10ax.online.tableau.com](https://10ax.online.tableau.com/). 
 
-## Set Up a Webhook Using Postman
+## <a id="postman"></a>Set Up a Webhook Using Postman
 
 Here is an example of setting up a webhook with the REST API
 using Postman.
@@ -51,7 +60,7 @@ using Postman.
 
 1. In the list of requests, click **Test a webhook**. Set the webhook ID to test in the variables or in the URI and then click **Send**. Testing the webhook sends an empty payload to the configured destination URL of the webhook and returns the response from the server. This is useful for testing, to ensure that things are being sent from Tableau and received back as expected.
 
-## Set Up a Webhook Using cURL
+## <a id="curl"></a>Set Up a Webhook Using cURL
 
 Here is an example of setting up a webhook with the REST API
 using cURL.
@@ -140,7 +149,7 @@ For the initial release of the developer preview of webhooks, these events are s
 | Workbook Refresh Succeeded   | webhook-source-event-workbook-refresh-succeededed |
 | Workbook Refresh Failed      | webhook-source-event-workbook-refresh-failed      | 
 
-## Payloads  
+## <a id="payloads"></a>Payloads  
 
 When one of the subscribed events fires, a JSON payload is sent to the
 URL that is configured. The payloads vary based on the type of event.  
@@ -162,6 +171,8 @@ succeeded, refresh failed, created, deleted, updated) are the same:  
   "site-id":"8b2a95d8-52b9-40a4-8712-cd6da771bd1b",  
 
   "resource-id":"99"  
+
+  "createdAt":"2018-11-15T17:14:45Z"
 
 }
 ```
@@ -191,6 +202,8 @@ same:  
 
   "resource-id":"99"  
 
+  "createdAt":"2018-11-15T17:14:45Z"
+
 }
 
 ```
@@ -203,7 +216,7 @@ same:  
 | site-id            | LUID for the site that contains the workbook.                                             |
 | resource-id        | The workbook ID.                                                                          |
 
-## Tableau REST API Endpoints for Webhooks  
+## <a id="endpoints"></a>Tableau Server REST API Endpoints for Webhooks  
 
 ### API Version  
 
@@ -410,6 +423,9 @@ To modify a webhook after it has been created, delete it and recreate it.
 
 ## <a id="behavior"></a>Tableau Webhooks Behavior
 
-- When a server that has been sent a webhook request does not reply with a success code, the webhook will retry the request with diminishing frequency. 
+- When a server that has been sent a webhook request does not reply with a success code, the webhook will retry the request three times with diminishing frequency. 
 
-- Since it is possible that more than one message will be received by the destination URL server for the same webhook request, we recommend that you parse incoming webhook requests to filter duplicates. The timestamp, message type, and content of the messages will all be identical. 
+- For successfully received requests, Tableau webhooks expect a HTTP response status code of `200`, `201`, or `202`.
+
+- In some cases, a Tableau event may cause more than one webhook request to be sent to the destination URL server. We recommend that you parse incoming webhook requests to filter duplicates. The JSON payloads of duplicate requests will  be identical.
+ 
