@@ -7,7 +7,7 @@ to events that happen in Tableau Online. For example, you could use
 webhooks to send an SMS or Slack notification any time
 a datasource refresh fails, or fire off a confetti cannon when a new
 workbook is created.  For the initial release of this developer preview,
-webhooks are supported for datasource and workbook events only.  
+webhooks are supported for a selected set of [datasource and workbook events](#events).  
 
 You configure each webhook to subscribe to an event in Tableau. Then,
 when the event occurs, an HTTP POST request will be sent to the public
@@ -121,7 +121,7 @@ Replace webhook-id with the webhook id from the create webhook response body.
 
 `curl "http://<server>/api/exp/sites/<site-id>/webhooks" -X GET -H "X-Tableau-Auth:<token>"`
 
-## Events
+## <a id="events"></a>Events
 
 For the initial release of the developer preview of webhooks, these events are supported:  
 
