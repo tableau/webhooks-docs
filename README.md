@@ -3,7 +3,7 @@
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
 - [Set Up a Webhook Using Postman](#postman)
-- [Set Up a Wbhook Using cURL](#curl)
+- [Set Up a Webhook Using cURL](#curl)
 - [Events](#events)
 - [Payloads](#payloads)
 - [Tableau Server REST API Endpoints for Webhooks](#endpoints)
@@ -423,9 +423,9 @@ To modify a webhook after it has been created, delete it and recreate it.
 
 ## <a id="behavior"></a>Tableau Webhooks Behavior
 
-- When a server that has been sent a webhook request does not reply with a success code, the webhook will retry the request three times with diminishing frequency. 
-
-- For successfully received requests, Tableau webhooks expect a HTTP response status code of `200`, `201`, or `202`.
-
 - In some cases, a Tableau event may cause more than one webhook request to be sent to the destination URL server. We recommend that you parse incoming webhook requests to filter duplicates. The JSON payloads of duplicate requests will  be identical.
  
+- When a server that has been sent a webhook request does not reply with a success code, the webhook will retry the request three times with diminishing frequency. 
+
+- For successfully received requests, Tableau webhooks expect a HTTP response status code of `200`, `201`, or `202`. Other `200` responses are not currently supported.
+
