@@ -85,7 +85,7 @@ Content of signin.xml:
 
 ### Create a Webhook
 
-`curl "http://<server>/api/exp/sites/<site-id>/webhooks" -X POST -H "X-Tableau-Auth:<token>" -d @details.xml`
+`curl "http://<server>/api/3.6/sites/<site-id>/webhooks" -X POST -H "X-Tableau-Auth:<token>" -d @details.xml`
 
 Replace token with the token from the sign in response body.
 
@@ -122,13 +122,13 @@ URL of the webhook and returns the response from the server. This is
 useful for testing, to ensure that things are being sent from Tableau
 and received back as expected.
 
-`curl "http://<server>/api/exp/sites/<site-id>/webhooks/<webhook-id>" -X GET -H "X-Tableau-Auth:<token>"`
+`curl "http://<server>/api/3.6/sites/<site-id>/webhooks/<webhook-id>" -X GET -H "X-Tableau-Auth:<token>"`
 
 Replace webhook-id with the webhook id from the create webhook response body.
 
 ### List Webhooks
 
-`curl "http://<server>/api/exp/sites/<site-id>/webhooks" -X GET -H "X-Tableau-Auth:<token>"`
+`curl "http://<server>/api/3.6/sites/<site-id>/webhooks" -X GET -H "X-Tableau-Auth:<token>"`
 
 ## <a id="events"></a>Events
 
@@ -220,7 +220,7 @@ same:  
 
 ### API Version  
 
-All REST API endpoints for webhooks are under the new experimental API version, “exp”. The base URL for the experimental API is: `https://10ax.online.tableau.com/api/exp/`.
+All REST API endpoints for webhooks are under the new experimental API version, “exp”. The base URL for the experimental API is: `https://10ax.online.tableau.com/api/3.6/`.
 
 ### Authentication  
 
@@ -232,7 +232,7 @@ Creates a new webhook for a site.  
 
 #### URI
 
-`POST /api/exp/sites/site-id/webhooks`
+`POST /api/3.6/sites/site-id/webhooks`
 
 #### Parameter Values
 
@@ -290,7 +290,7 @@ Returns information about the specified webhook. 
 
 #### URI
 
-`GET /api/exp/sites/site-id/webhooks/webhook-id`
+`GET /api/3.6/sites/site-id/webhooks/webhook-id`
 
 #### Parameter Values
 
@@ -327,7 +327,7 @@ Returns a list of all the webhooks on the specified site. 
 
 #### URI
 
-`GET /api/exp/sites/site-id/webhooks`
+`GET /api/3.6/sites/site-id/webhooks`
   
 #### Parameter Values
 
@@ -365,7 +365,7 @@ Tests the specified webhook. Sends an empty payload to the configured 
 
 #### URI
 
-`GET /api/exp/sites/site-id/webhooks/webhook-id/test`
+`GET /api/3.6/sites/site-id/webhooks/webhook-id/test`
 
 #### Parameter Values
 
@@ -397,7 +397,7 @@ Deletes the specified webhook. 
 
 #### URI
 
-`DELETE /api/exp/sites/site-id/webhooks/webhook-id`
+`DELETE /api/3.6/sites/site-id/webhooks/webhook-id`
 
 #### Parameter Values
 
