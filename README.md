@@ -126,6 +126,8 @@ and received back as expected.
 
 Replace webhook-id with the webhook id from the create webhook response body.
 
+See the [Test a Webhook](#testawebhook) endpoint for more information.
+
 ### List Webhooks
 
 `curl "http://<server>/api/3.6/sites/<site-id>/webhooks" -X GET -H "X-Tableau-Auth:<token>"`
@@ -359,7 +361,7 @@ None 
 </tsResponse>  
 ```
 
-### Test a Webhook
+### <a id="testawebhook"></a>Test a Webhook
 
 Tests the specified webhook. Sends an empty payload to the configured destination URL of the webhook and returns the response from the server. This is useful for testing, to ensure that things are being sent from Tableau and received back as expected.  
 
@@ -380,6 +382,8 @@ None 
 #### Response Code
 
 `200`
+
+A response in the `2xx` range means a successful test of the webhook. Responses in the `4xx` range mean that the webhook did not function properly, or does not exist (`400113`). 
 
 #### Response Body
 
