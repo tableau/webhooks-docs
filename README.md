@@ -122,7 +122,7 @@ URL of the webhook and returns the response from the server. This is
 useful for testing, to ensure that things are being sent from Tableau
 and received back as expected.
 
-`curl "http://<server>/api/3.6/sites/<site-id>/webhooks/<webhook-id>" -X GET -H "X-Tableau-Auth:<token>"`
+`curl "http://<server>/api/3.6/sites/<site-id>/webhooks/<webhook-id>/test" -X GET -H "X-Tableau-Auth:<token>"`
 
 Replace webhook-id with the webhook id from the create webhook response body.
 
