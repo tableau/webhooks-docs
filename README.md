@@ -222,7 +222,7 @@ same:  
 
 ### API Version  
 
-All REST API endpoints for webhooks are under the new experimental API version, “exp”. The base URL for the experimental API is: `https://10ax.online.tableau.com/api/3.6/`.
+All REST API endpoints for webhooks are under the 3.6 API version. The base URL for this API version is: `https://10ax.online.tableau.com/api/3.6/`.
 
 ### Authentication  
 
@@ -234,7 +234,7 @@ Creates a new webhook for a site.  
 
 #### URI
 
-`POST /api/3.6/sites/site-id/webhooks`
+`POST /api/3.6/sites/<site-id>/webhooks`
 
 #### Parameter Values
 
@@ -284,7 +284,7 @@ Creates a new webhook for a site.  
 
 #### Response Headers
 
-`Location: /api/api-version/sites/site-id/webhooks/new-webhook-id`  
+`Location: /api/<api-version>/sites/<site-id>/webhooks/new-webhook-id`  
 
 ### Get a Webhook  
 
@@ -292,7 +292,7 @@ Returns information about the specified webhook. 
 
 #### URI
 
-`GET /api/3.6/sites/site-id/webhooks/webhook-id`
+`GET /api/3.6/sites/<site-id>/webhooks/webhook-id`
 
 #### Parameter Values
 
@@ -329,7 +329,7 @@ Returns a list of all the webhooks on the specified site. 
 
 #### URI
 
-`GET /api/3.6/sites/site-id/webhooks`
+`GET /api/3.6/sites/<site-id>/webhooks`
   
 #### Parameter Values
 
@@ -367,7 +367,7 @@ Tests the specified webhook. Sends an empty payload to the configured 
 
 #### URI
 
-`GET /api/3.6/sites/site-id/webhooks/webhook-id/test`
+`GET /api/3.6/sites/<site-id>/webhooks/webhook-id/test`
 
 #### Parameter Values
 
@@ -401,7 +401,7 @@ Deletes the specified webhook. 
 
 #### URI
 
-`DELETE /api/3.6/sites/site-id/webhooks/webhook-id`
+`DELETE /api/3.6/sites/<site-id>/webhooks/webhook-id`
 
 #### Parameter Values
 
