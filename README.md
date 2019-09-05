@@ -124,7 +124,7 @@ and received back as expected.
 
 `curl "http://<server>/api/3.6/sites/<site-id>/webhooks/<webhook-id>/test" -X GET -H "X-Tableau-Auth:<token>"`
 
-Replace webhook-id with the webhook id from the create webhook response body.
+Replace `webhook-id` with the webhook id from the create webhook response body.
 
 See the [Test a Webhook](#testawebhook) endpoint for more information.
 
@@ -284,7 +284,7 @@ Creates a new webhook for a site.  
 
 #### Response Headers
 
-`Location: /api/<api-version>/sites/<site-id>/webhooks/new-webhook-id`  
+`Location: /api/<api-version>/sites/<site-id>/webhooks/<new-webhook-id>`  
 
 ### Get a Webhook  
 
@@ -292,13 +292,13 @@ Returns information about the specified webhook. 
 
 #### URI
 
-`GET /api/3.6/sites/<site-id>/webhooks/webhook-id`
+`GET /api/3.6/sites/<site-id>/webhooks/<webhook-id>`
 
 #### Parameter Values
 
 `site-id`   The ID of the site that contains the webhook.
 
-`webhook-id`   The ID of the webhook to get information for.  
+`<webhook-id>`   The ID of the webhook to get information for.  
   
 #### Request Body
 
@@ -367,7 +367,7 @@ Tests the specified webhook. Sends an empty payload to the configured 
 
 #### URI
 
-`GET /api/3.6/sites/<site-id>/webhooks/webhook-id/test`
+`GET /api/3.6/sites/<site-id>/webhooks/<webhook-id>/test`
 
 #### Parameter Values
 
@@ -401,7 +401,7 @@ Deletes the specified webhook. 
 
 #### URI
 
-`DELETE /api/3.6/sites/<site-id>/webhooks/webhook-id`
+`DELETE /api/3.6/sites/<site-id>/webhooks/<webhook-id>`
 
 #### Parameter Values
 
@@ -429,7 +429,5 @@ To modify a webhook after it has been created, delete it and recreate it.
 
 - In some cases, a Tableau event may cause more than one webhook request to be sent to the destination URL server. We recommend that you parse incoming webhook requests to filter duplicates. The JSON payloads of duplicate requests will  be identical.
  
-- When a server that has been sent a webhook request does not reply with a success code, the webhook will retry the request three times with diminishing frequency. 
-
-- For successfully received requests, Tableau webhooks expect a HTTP response status code in the `2xx` range.
+- When a server that has been sent a webhook request does not reply with a HTTP success code, the webhook will retry the request three times with diminishing frequency. (A HTTP success code is defined as any number in the [2xx range](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_Success).)
 
