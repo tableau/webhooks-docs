@@ -431,5 +431,5 @@ To modify a webhook after it has been created, delete it and recreate it.
  
 - When a server that has been sent a webhook request does not reply with a success code, the webhook will retry the request three times with diminishing frequency. 
 
-- For successfully received requests, Tableau webhooks expect a HTTP response status code of `200`, `201`, or `202`. Other `200` responses are not currently supported.
+- For successfully received requests, Tableau webhooks expect a HTTP response status code in the `2xx` range.
 
