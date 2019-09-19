@@ -252,7 +252,7 @@ Creates a new webhook for a site.  
     </webhook-source>  
     <webhook-destination>  
       <webhook-destination-http method="POST" url="url" />  
-    </webhook-destination>  
+    </webhook-destination>
   </webhook>  
 </tsRequest>
 ```
@@ -280,6 +280,7 @@ Creates a new webhook for a site.  
         <webhook-destination>  
             <webhook-destination-http method="POST" url="url"/>  
         </webhook-destination>  
+        <owner id="webhook_owner_luid" name="webhook_owner_name"/>
     </webhook>  
 </tsResponse>
 ```
@@ -321,6 +322,7 @@ None 
         <webhook-destination>  
             <webhook-destination-http method="POST" url="url"/>  
         </webhook-destination>  
+        <owner id="webhook_owner_luid" name="webhook_owner_name"/>
     </webhook>  
 </tsResponse>
 ```
@@ -356,9 +358,10 @@ None 
         </webhook-source>  
         <webhook-destination>  
             <webhook-destination-http method="POST" url="url"/>  
-        </webhook-destination>  
+        </webhook-destination>
+        <owner id="webhook_owner_luid" name="webhook_owner_name"/>
        </webhook>  
-      ... additional webhooks ...  
+       <!--  ... additional webhooks ...  -->
    </webhooks>  
 </tsResponse>  
 ```
