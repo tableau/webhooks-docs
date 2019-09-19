@@ -31,6 +31,8 @@ Learn more about [Tableau Webhooks Behavior](#behavior). 
 
 To use Tableau webhooks, you must be authenticated as a site administrator for the Tableau Online instance where the webhooks feature is enabled, for example, [https://10ax.online.tableau.com](https://10ax.online.tableau.com/). 
 
+You can set up your own Tableau Online instance and get many other benefits at no cost by joining the [Tableau Developer Program](https://developer.tableau.com).  
+
 ## <a id="postman"></a>Set Up a Webhook Using Postman
 
 Here is an example of setting up a webhook with the REST API
