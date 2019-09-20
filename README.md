@@ -38,9 +38,9 @@ You can set up your own Tableau Online instance and get many other benefits at n
 Here is an example of setting up a webhook with the REST API
 using Postman.
 
-1. Download the file [Postman-Collection-Tableau-Webhooks.json](Postman-Collection-Tableau-Webhooks.json)
+1. Download the file [Postman-Collection-Tableau-Webhooks.json](https://raw.githubusercontent.com/tableau/webhooks-docs/pre-beta/Postman-Collection-Tableau-Webhooks.json) (follow the link and save from the browser).
 
-1. Download and install Postman from [https://www.getpostman.com/](https://www.getpostman.com/)
+1. Download and install Postman from [https://www.getpostman.com/](https://www.getpostman.com/).
 
 1. Launch Postman.
 
