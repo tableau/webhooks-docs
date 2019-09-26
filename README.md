@@ -12,7 +12,7 @@
 ## <a id="introduction"></a>Introduction  
 
 Webhooks let you build custom applications or workflows that react
-to events that happen in Tableau Online. For example, you could use
+to events that happen in Tableau. For example, you could use
 webhooks to send an SMS or Slack notification any time
 a datasource refresh fails, or fire off a confetti cannon when a new
 workbook is created.  For the initial release of this developer preview,
@@ -29,7 +29,7 @@ Learn more about [Tableau Webhooks Behavior](#behavior). 
 
 ## <a id="prerequisites"></a>Prerequisites  
 
-To use Tableau webhooks, you must be authenticated as a site administrator for the Tableau Online instance where the webhooks feature is enabled, for example, [https://10ax.online.tableau.com](https://10ax.online.tableau.com/). 
+To use Tableau webhooks, you must be authenticated as a site administrator for the Tableau Online or Server instance where the webhooks feature is enabled, for example, [https://10ax.online.tableau.com](https://10ax.online.tableau.com/). 
 
 You can set up your own Tableau Online instance and get many other benefits at no cost by joining the [Tableau Developer Program](https://developer.tableau.com).  
 
@@ -224,7 +224,7 @@ same:  
 
 ### API Version  
 
-All REST API endpoints for webhooks are under the 3.6 API version. The base URL for this API version is: `https://10ax.online.tableau.com/api/3.6/`.
+All REST API endpoints for webhooks developer preview are under the 3.6 API version. The base URL for this API version is: `https://{{server}}/api/3.6/`.
 
 ### Authentication  
 
