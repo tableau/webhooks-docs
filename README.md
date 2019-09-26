@@ -140,18 +140,18 @@ For the initial release of the developer preview of webhooks, these events are s
 
 | Friendly Event Name          | API Event Name                                    |
 | ---------------------------- | ------------------------------------------------- |
-| Datasource Refresh Started   | webhook-source-event-datasource-refresh-started   |
-| Datasource Refresh Succeeded | webhook-source-event-datasource-refresh-succeeded |
-| Datasource Refresh Failed    | webhook-source-event-datasource-refresh-failed    |
-| Datasource Updated           | webhook-source-event-datasource-updated           |
-| Datasource Created           | webhook-source-event-datasource-created           |
-| Datasource Deleted           | webhook-source-event-datasource-deleted           |
-| Workbook Updated             | webhook-source-event-workbook-updated             |
-| Workbook Created             | webhook-source-event-workbook-created             |
-| Workbook Deleted             | webhook-source-event-workbook-deleted             |
-| Workbook Refresh Started     | webhook-source-event-workbook-refresh-started     |
-| Workbook Refresh Succeeded   | webhook-source-event-workbook-refresh-succeededed |
-| Workbook Refresh Failed      | webhook-source-event-workbook-refresh-failed      | 
+| DatasourceRefreshStarted   | webhook-source-event-datasource-refresh-started   |
+| DatasourceRefreshSucceeded | webhook-source-event-datasource-refresh-succeeded |
+| DatasourceRefreshFailed    | webhook-source-event-datasource-refresh-failed    |
+| DatasourceUpdated           | webhook-source-event-datasource-updated           |
+| DatasourceCreated           | webhook-source-event-datasource-created           |
+| DatasourceDeleted           | webhook-source-event-datasource-deleted           |
+| WorkbookUpdated             | webhook-source-event-workbook-updated             |
+| WorkbookCreated             | webhook-source-event-workbook-created             |
+| WorkbookDeleted             | webhook-source-event-workbook-deleted             |
+| WorkbookRefreshStarted     | webhook-source-event-workbook-refresh-started     |
+| WorkbookRefreshSucceeded   | webhook-source-event-workbook-refresh-succeededed |
+| WorkbookRefreshFailed      | webhook-source-event-workbook-refresh-failed      | 
 
 ## <a id="payloads"></a>Payloads  
 
