@@ -215,7 +215,7 @@ same:  
 | Field         | Description                                                                          |
 | ------------------ | ----------------------------------------------------------------------------------------- |
 | resource           | Will always be “WORKBOOK” for workbook events.                                            |
-| event-type         | Type of event that occurred. Can be WorkbookCreated, WorkbookDeleted, or WorkbookUpdated. |
+| event-type         | Type of event that occurred. Can be WorkbookRefreshStarted, WorkbookRefreshSucceeded, and WorkbookRefreshFailed. |
 | resource-name      | Name of the workbook in question.                                                         |
 | site-id            | LUID for the site that contains the workbook.                                             |
 | resource-id        | The workbook ID.                                                                          |
