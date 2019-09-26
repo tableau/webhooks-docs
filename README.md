@@ -48,7 +48,7 @@ using Postman.
 
 1. Launch Postman and click **File** \> **Import** and then choose the Postman collection file you downloaded. 
 
-1. Choose the **Tableau Webhooks Requests** collection on the left, and then select **Tableau Wehooks** from the environment dropdown menu on the top right.
+1. Choose the **Tableau Webhooks Requests** collection on the left, and then select **Tableau Webhooks** from the environment dropdown menu on the top right.
 
 1. To configure environment variables for webhooks, click the gear icon near the environment dropdown. In the **MANAGE ENVIRONMENTS** dialog, select **Tableau Webhooks**. Replace the placeholder URL for the `server` variable in the **CURRENT VARIABLE** column with your server URL (like `https://10ax.online.tableau.com`). Close the dialog.
 
@@ -56,11 +56,11 @@ using Postman.
 
 1. Open the **MANAGE ENVIRONMENTS** dialog from the gear icon, open **Tableau Webhooks** variables and use the site id and token to set **CURRENT VALUE** of the `site_id` and `tableau_auth_token` variables.
 
-1. In the list of requests, click **Create a webhook**. In the request body, enter a webhook `name`, a  `webhook-source-api-event-name` from the [Events](#events) table, and a destination **url**. The destination URL must be https and have a valid certificate.
+1. In the list of requests, click **Create a webhook**. In the request body, enter a webhook `name`, a  `webhook-source-api-event-name` from the [Events](#events) table, and a destination `url`. The destination URL must be https and have a valid certificate.
 
 1. Click **Send**, and then use the ID of your new webhook from the response body to set the `webhook-id` environment variable in the **MANAGE ENVIRONMENTS** dialog.
 
-1. In the list of requests, choose **Test a webhook** and click  **Send**. Testing the webhook sends an empty payload to the configured destination URL of the webhook and returns the response from the server. This is useful for testing, to ensure that things are being sent from Tableau and received back as expected.
+1. In the list of requests, choose **Test a webhook** and click  **Send**. Testing the webhook sends an empty payload to the configured destination URL of the webhook and returns the response from the server. This is useful for testing, to ensure that webhooks POSTs are being sent from Tableau and a response is returnedfrom the destination as expected.
 
 ## <a id="curl"></a>Set Up a Webhook Using cURL
 
@@ -248,7 +248,7 @@ Creates a new webhook for a site.  
 <tsRequest>  
   <webhook name="webhook-name">  
     <webhook-source>  
-      <webhook-source-event-name />  
+      <webhook-source-api-event-name />  
     </webhook-source>  
     <webhook-destination>  
       <webhook-destination-http method="POST" url="url" />  
@@ -261,7 +261,7 @@ Creates a new webhook for a site.  
 
 `webhook-name`   A name for the webhook.
 
-`webhook-source-event-name`   The API event name for the source event. It must be one of the supported events, such as, \<webhook-source-event-datasource-refresh-started />  
+`webhook-source-api-event-name`   The API event name for the source event. It must be one of the supported events, such as, \<webhook-source-event-datasource-refresh-started />  
 
 `url`   The destination URL for the webhook. The webhook destination URL must be https and have a valid certificate.
   
@@ -275,7 +275,7 @@ Creates a new webhook for a site.  
 <tsResponse>  
     <webhook id="webhook-id" name="webhook-name">  
         <webhook-source>  
-            <webhook-source-event-name />  
+            <webhook-source-api-event-name />  
         </webhook-source>  
         <webhook-destination>  
             <webhook-destination-http method="POST" url="url"/>  
@@ -317,7 +317,7 @@ None 
 <tsResponse>  
     <webhook id="webhook-id" name="webhook-name">  
         <webhook-source>  
-            <webhook-source-event-name />  
+            <webhook-source-api-event-name />  
         </webhook-source>  
         <webhook-destination>  
             <webhook-destination-http method="POST" url="url"/>  
@@ -354,7 +354,7 @@ None 
    <webhooks>  
       <webhook id="webhook-id" name="webhook-name">  
         <webhook-source>  
-            <webhook-source-event-name />  
+            <webhook-source-api-event-name />  
         </webhook-source>  
         <webhook-destination>  
             <webhook-destination-http method="POST" url="url"/>  
