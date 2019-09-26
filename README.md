@@ -38,29 +38,29 @@ You can set up your own Tableau Online instance and get many other benefits at n
 Here is an example of setting up a webhook with the REST API
 using Postman.
 
-1. Download the file [Postman-Collection-Tableau-Webhooks.json](https://raw.githubusercontent.com/tableau/webhooks-docs/pre-beta/Postman-Collection-Tableau-Webhooks.json) (follow the link and save from the browser).
+1. Download the following files (follow the link and save from your browser or IDE:
+
+    - [Postman-Collection-Tableau-Webhooks.json](https://raw.githubusercontent.com/tableau/webhooks-docs/pre-beta/Postman-Collection-Tableau-Webhooks.json)
+
+    - [Postman-Environment-Tableau-Webhooks.json](https://raw.githubusercontent.com/tableau/webhooks-docs/pre-beta/Postman-Environment-Tableau-Webhooks.json)
 
 1. Download and install Postman from [https://www.getpostman.com/](https://www.getpostman.com/).
 
-1. Launch Postman.
+1. Launch Postman and click **File** \> **Import** and then choose the Postman collection file you downloaded. 
 
-1. Click **File** \> **Import** and then choose the Postman collection you downloaded. The collection appears on the left.
+1. Choose the **Tableau Webhooks Requests** collection on the left, and then select **Tableau Wehooks** from the environment dropdown menu on the top right.
 
-1. To configure the variables in the collection, click the ellipsis beside the collection name in the left sidebar.
+1. To configure environment variables for webhooks, click the gear icon near the environment dropdown. In the **MANAGE ENVIRONMENTS** dialog, select **Tableau Webhooks**. Replace the placeholder URL for the `server` variable in the **CURRENT VARIABLE** column with your server URL (like `https://10ax.online.tableau.com`). Close the dialog.
 
-1. Click **Edit**.
+1. In the **Tableau Webhooks Requests** collection, choose the **Sign-in** request. For Tableau Online or a named server site, add the `contentURL` of your site (like `my_site` in `https://10ax.online.tableau.com/site/my_site/projects`). Click **Send**. The response body contains the site id and a token.  
 
-1. Click the **Variables** tab, change the Tableau\_Server variable to the correct server. Click **Update**.
+1. Open the **MANAGE ENVIRONMENTS** dialog from the gear icon, open **Tableau Webhooks** variables and use the site id and token to set **CURRENT VALUE** of the `site_id` and `tableau_auth_token` variables.
 
-1. In the list of requests, click **Sign-in** and then click **Send**. The response body contains the site id and a token.  
+1. In the list of requests, click **Create a webhook**. In the request body, enter a webhook `name`, a  `webhook-source-api-event-name` from the [Events](#events) table, and a destination **url**. The destination URL must be https and have a valid certificate.
 
-1. Click the **Variables** tab and set the Site\_ID and Tableau\_Auth\_Token variables.
+1. Click **Send**, and then use the ID of your new webhook from the response body to set the `webhook-id` environment variable in the **MANAGE ENVIRONMENTS** dialog.
 
-1. In the list of requests, click **Create a webhook**. In the request body, change the webhook **name** and **url**. The webhook destination URL must be https and have a valid certificate.
-
-1. Click **Send**. The ID of the new webhook is returned in the response body.
-
-1. In the list of requests, click **Test a webhook**. Set the webhook ID to test in the variables or in the URI and then click **Send**. Testing the webhook sends an empty payload to the configured destination URL of the webhook and returns the response from the server. This is useful for testing, to ensure that things are being sent from Tableau and received back as expected.
+1. In the list of requests, choose **Test a webhook** and click  **Send**. Testing the webhook sends an empty payload to the configured destination URL of the webhook and returns the response from the server. This is useful for testing, to ensure that things are being sent from Tableau and received back as expected.
 
 ## <a id="curl"></a>Set Up a Webhook Using cURL
 
