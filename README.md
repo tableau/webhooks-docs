@@ -1,4 +1,4 @@
-# Webhooks Documentation
+# Tableau Webhooks Documentation
 
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
