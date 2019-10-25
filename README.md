@@ -1,4 +1,4 @@
-# Webhooks Documentation (Developer Preview)
+# Webhooks Documentation
 
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
@@ -15,7 +15,7 @@ Webhooks let you build custom applications or workflows that react
 to events that happen in Tableau. For example, you could use
 webhooks to send an SMS or Slack notification any time
 a datasource refresh fails, or fire off a confetti cannon when a new
-workbook is created.  For the initial release of this developer preview,
+workbook is created.  For the initial release,
 webhooks are supported for a selected set of [datasource and workbook events](#events).  
 
 You configure each webhook to subscribe to an event in Tableau. Then,
@@ -136,7 +136,7 @@ See the [Test a Webhook](#testawebhook) endpoint for more information.
 
 ## <a id="events"></a>Events
 
-For the initial release of the developer preview of webhooks, these events are supported:  
+For the initial release of webhooks, these events are supported:  
 
 | Friendly Event Name          | API Event Name                                    |
 | ---------------------------- | ------------------------------------------------- |
@@ -224,7 +224,7 @@ same:  
 
 ### API Version  
 
-All REST API endpoints for webhooks developer preview are under the 3.6 API version. The base URL for this API version is: `https://{{server}}/api/3.6/`.
+All REST API endpoints for the initial release of webhooks are under the 3.6 API version. The base URL for this API version is: `https://{{server}}/api/3.6/`.
 
 ### Authentication  
 
