@@ -42,7 +42,7 @@ using Postman.
 
     - [Postman-Collection-Tableau-Webhooks.json](https://raw.githubusercontent.com/tableau/webhooks-docs/pre-beta/Postman-Collection-Tableau-Webhooks.json)
 
-    - [Postman-Environment-Tableau-Webhooks.json](https://raw.githubusercontent.com/tableau/webhooks-docs/pre-beta/Postman-Environment-Tableau-Webhooks.json)
+    - [Postman-Environment-Tableau-Webhooks.json](https://github.com/tableau/webhooks-docs/blob/master/Postman-Environment-Tableau-Webhooks.json)
 
 1. Download and install Postman from [https://www.getpostman.com/](https://www.getpostman.com/).
 
