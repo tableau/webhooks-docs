@@ -150,7 +150,7 @@ For the initial release of webhooks, these events are supported:  
 | WorkbookCreated             | webhook-source-event-workbook-created             |
 | WorkbookDeleted             | webhook-source-event-workbook-deleted             |
 | WorkbookRefreshStarted     | webhook-source-event-workbook-refresh-started     |
-| WorkbookRefreshSucceeded   | webhook-source-event-workbook-refresh-succeededed |
+| WorkbookRefreshSucceeded   | webhook-source-event-workbook-refresh-succeeded |
 | WorkbookRefreshFailed      | webhook-source-event-workbook-refresh-failed      | 
 
 ## <a id="payloads"></a>Payloads  
