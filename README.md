@@ -168,15 +168,15 @@ succeeded, refresh failed, created, deleted, updated) are the same:  
 
   "resource":"DATASOURCE",  
 
-  "event-type":"DatasourceCreated",  
+  "event_type":"DatasourceCreated",  
 
-  "resource-name":"My Datasource",  
+  "resource_name":"My Datasource",  
 
-  "site-id":"8b2a95d8-52b9-40a4-8712-cd6da771bd1b",  
+  "site_luid":"8b2a95d8-52b9-40a4-8712-cd6da771bd1b",  
 
-  "resource-id":"99"  
+  "resource_luid":"99",  
 
-  "createdAt":"2018-11-15T17:14:45Z"
+  "created_at":"2018-11-15T17:14:45Z"
 
 }
 ```
@@ -198,15 +198,15 @@ same:  
 
   "resource":"WORKBOOK",  
 
-  "event-type":"WorkbookCreated",  
+  "event_type":"WorkbookCreated",  
 
-  "resource-name":"My Workbook",  
+  "resource_name":"My Workbook",  
 
-  "site-id":"8b2a95d8-52b9-40a4-8712-cd6da771bd1b",  
+  "site_luid":"8b2a95d8-52b9-40a4-8712-cd6da771bd1b",  
 
-  "resource-id":"99"  
+  "resource_luid":"99",  
 
-  "createdAt":"2018-11-15T17:14:45Z"
+  "created_at":"2018-11-15T17:14:45Z"
 
 }
 
