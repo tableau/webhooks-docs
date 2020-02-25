@@ -183,10 +183,10 @@ succeeded, refresh failed, created, deleted, updated) are the same:  
 | Field         | Description                                                                          |
 | ------------------ | ----------------------------------------------------------------------------------------- |
 | resource           | Will always be “DATASOURCE” for datasource events.                                        |
-| event-type         | Type of event that occurred. Can be DatasourceRefreshStarted, DatasourceRefreshSucceeded, DatasourceRefreshFailed, DatasourceCreated, DatasourceDeleted, or DatasourceUpdated. |
-| resource-name      | Name of the datasource in question.                                                       |
-| site-id            | LUID for the site that contains the datasource.                                           |
-| resource-id        | The datasource ID.                                                                        |
+| event_type         | Type of event that occurred. Can be DatasourceRefreshStarted, DatasourceRefreshSucceeded, DatasourceRefreshFailed, DatasourceCreated, DatasourceDeleted, or DatasourceUpdated. |
+| resource_name      | Name of the datasource in question.                                                       |
+| site_luid            | LUID for the site that contains the datasource.                                           |
+| resource_luid        | The datasource ID.                                                                        |
 
 ### Workbook Events  
 
@@ -215,10 +215,10 @@ same:  
 | Field         | Description                                                                          |
 | ------------------ | ----------------------------------------------------------------------------------------- |
 | resource           | Will always be “WORKBOOK” for workbook events.                                            |
-| event-type         | Type of event that occurred. Can be WorkbookRefreshStarted, WorkbookRefreshSucceeded, and WorkbookRefreshFailed. |
-| resource-name      | Name of the workbook in question.                                                         |
-| site-id            | LUID for the site that contains the workbook.                                             |
-| resource-id        | The workbook ID.                                                                          |
+| event_type         | Type of event that occurred. Can be WorkbookRefreshStarted, WorkbookRefreshSucceeded, and WorkbookRefreshFailed. |
+| resource_name      | Name of the workbook in question.                                                         |
+| site_luid            | LUID for the site that contains the workbook.                                             |
+| resource_luid        | The workbook ID.                                                                          |
 
 ## <a id="endpoints"></a>Tableau Server REST API Endpoints for Webhooks  
 
