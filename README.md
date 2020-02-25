@@ -168,25 +168,25 @@ succeeded, refresh failed, created, deleted, updated) are the same:  
 
   "resource":"DATASOURCE",  
 
-  "event-type":"DatasourceCreated",  
+  "event_type":"DatasourceCreated",  
 
-  "resource-name":"My Datasource",  
+  "resource_name":"My Datasource",  
 
-  "site-id":"8b2a95d8-52b9-40a4-8712-cd6da771bd1b",  
+  "site_luid":"8b2a95d8-52b9-40a4-8712-cd6da771bd1b",  
 
-  "resource-id":"99"  
+  "resource_luid":"99",  
 
-  "createdAt":"2018-11-15T17:14:45Z"
+  "created_at":"2018-11-15T17:14:45Z"
 
 }
 ```
 | Field         | Description                                                                          |
 | ------------------ | ----------------------------------------------------------------------------------------- |
 | resource           | Will always be “DATASOURCE” for datasource events.                                        |
-| event-type         | Type of event that occurred. Can be DatasourceRefreshStarted, DatasourceRefreshSucceeded, DatasourceRefreshFailed, DatasourceCreated, DatasourceDeleted, or DatasourceUpdated. |
-| resource-name      | Name of the datasource in question.                                                       |
-| site-id            | LUID for the site that contains the datasource.                                           |
-| resource-id        | The datasource ID.                                                                        |
+| event_type         | Type of event that occurred. Can be DatasourceRefreshStarted, DatasourceRefreshSucceeded, DatasourceRefreshFailed, DatasourceCreated, DatasourceDeleted, or DatasourceUpdated. |
+| resource_name      | Name of the datasource in question.                                                       |
+| site_luid            | LUID for the site that contains the datasource.                                           |
+| resource_luid        | The datasource ID.                                                                        |
 
 ### Workbook Events  
 
@@ -198,15 +198,15 @@ same:  
 
   "resource":"WORKBOOK",  
 
-  "event-type":"WorkbookCreated",  
+  "event_type":"WorkbookCreated",  
 
-  "resource-name":"My Workbook",  
+  "resource_name":"My Workbook",  
 
-  "site-id":"8b2a95d8-52b9-40a4-8712-cd6da771bd1b",  
+  "site_luid":"8b2a95d8-52b9-40a4-8712-cd6da771bd1b",  
 
-  "resource-id":"99"  
+  "resource_luid":"99",  
 
-  "createdAt":"2018-11-15T17:14:45Z"
+  "created_at":"2018-11-15T17:14:45Z"
 
 }
 
@@ -215,10 +215,10 @@ same:  
 | Field         | Description                                                                          |
 | ------------------ | ----------------------------------------------------------------------------------------- |
 | resource           | Will always be “WORKBOOK” for workbook events.                                            |
-| event-type         | Type of event that occurred. Can be WorkbookRefreshStarted, WorkbookRefreshSucceeded, and WorkbookRefreshFailed. |
-| resource-name      | Name of the workbook in question.                                                         |
-| site-id            | LUID for the site that contains the workbook.                                             |
-| resource-id        | The workbook ID.                                                                          |
+| event_type         | Type of event that occurred. Can be WorkbookRefreshStarted, WorkbookRefreshSucceeded, and WorkbookRefreshFailed. |
+| resource_name      | Name of the workbook in question.                                                         |
+| site_luid            | LUID for the site that contains the workbook.                                             |
+| resource_luid        | The workbook ID.                                                                          |
 
 ## <a id="endpoints"></a>Tableau Server REST API Endpoints for Webhooks  
 
