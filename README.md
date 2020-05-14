@@ -248,7 +248,7 @@ POST /api/3.6/sites/<site-id>/webhooks
 
 ```
 <tsRequest>  
-  <webhook name="webhook-name" isEnabled="webhook-enabled-flag" statusChangeReason="reason-for-disablement">  
+  <webhook name="webhook-name" isEnabled="webhook-enabled-flag" >  
     <webhook-source>  
       <webhook-source-api-event-name />  
     </webhook-source>  
@@ -268,11 +268,6 @@ POST /api/3.6/sites/<site-id>/webhooks
 `url`   The destination URL for the webhook. The webhook destination URL must be https and have a valid certificate.
 
 `webhook-enabled-flag`   Optional, boolean. If `true` (default), the newly created webhook is enabled. If `false` then the webhook will be disabled.
-
-`reason-for-disablement`   The reason a webhook is disabled. 
-
-- If `isEnabled` set to `true`, omit this parameter from your request to create a webhook, or set the value of `statusChangeReason` to an empty string. Providing a reason value when creating an enabled webhook will result in an error (400127).
-- If `isEnabled` set to `false`, then unless you provide a value for `statusChangeReason` it will default to "Webhook disabled by user".
   
 #### Response Code
 
