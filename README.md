@@ -236,7 +236,9 @@ Creates a new webhook for a site.  
 
 #### URI
 
-`POST /api/3.6/sites/<site-id>/webhooks`
+```
+POST /api/3.6/sites/<site-id>/webhooks
+```
 
 #### Parameter Values
 
@@ -246,7 +248,7 @@ Creates a new webhook for a site.  
 
 ```
 <tsRequest>  
-  <webhook name="webhook-name">  
+  <webhook name="webhook-name" isEnabled="webhook-enabled-flag" statusChangeReason="reason-for-disablement">  
     <webhook-source>  
       <webhook-source-api-event-name />  
     </webhook-source>  
@@ -259,21 +261,30 @@ Creates a new webhook for a site.  
 
 #### Attribute Values
 
-`webhook-name`   A name for the webhook.
+`webhook-name`   Required. A name for the webhook.
 
-`webhook-source-api-event-name`   The API event name for the source event. It must be one of the supported events, such as, \<webhook-source-event-datasource-refresh-started />  
+`webhook-source-api-event-name`   Required. The API event name for the source event. It must be one of the supported events, such as, \<webhook-source-event-datasource-refresh-started />  
 
 `url`   The destination URL for the webhook. The webhook destination URL must be https and have a valid certificate.
+
+`webhook-enabled-flag`   Optional, boolean. If `true` (default), the newly created webhook is enabled. If `false` then the webhook will be disabled.
+
+`reason-for-disablement`   The reason a webhook is disabled. 
+
+- If `isEnabled` set to `true`, omit this parameter from your request to create a webhook, or set the value of `statusChangeReason` to an empty string. Providing a reason value when creating an enabled webhook will result in an error (400127).
+- If `isEnabled` set to `false`, then unless you provide a value for `statusChangeReason` it will default to "Webhook disabled by user".
   
 #### Response Code
 
-`201`  
+`201` Success.
+
+`400` Error 400127: `statusChangeReason` was provided with `isEnabled` = `true` 
 
 #### Response Body
 
 ```
 <tsResponse>  
-    <webhook id="webhook-id" name="webhook-name">  
+    <webhook id="webhook-id" name="webhook-name"  isEnabled="true" statusChangeReason="">  
         <webhook-source>  
             <webhook-source-api-event-name />  
         </webhook-source>  
@@ -295,7 +306,9 @@ Returns information about the specified webhook. 
 
 #### URI
 
-`GET /api/3.6/sites/<site-id>/webhooks/<webhook-id>`
+```
+GET /api/3.6/sites/<site-id>/webhooks/<webhook-id>
+```
 
 #### Parameter Values
 
@@ -315,7 +328,7 @@ None 
 
 ```
 <tsResponse>  
-    <webhook id="webhook-id" name="webhook-name">  
+    <webhook id="webhook-id" name="webhook-name" isEnabled="true" statusChangeReason="">  
         <webhook-source>  
             <webhook-source-api-event-name />  
         </webhook-source>  
@@ -333,7 +346,9 @@ Returns a list of all the webhooks on the specified site. 
 
 #### URI
 
-`GET /api/3.6/sites/<site-id>/webhooks`
+```
+GET /api/3.6/sites/<site-id>/webhooks
+```
   
 #### Parameter Values
 
@@ -352,7 +367,7 @@ None 
 ```
 <tsResponse>  
    <webhooks>  
-      <webhook id="webhook-id" name="webhook-name">  
+      <webhook id="webhook-id" name="webhook-name" isEnabled="true" statusChangeReason="">  
         <webhook-source>  
             <webhook-source-api-event-name />  
         </webhook-source>  
@@ -372,7 +387,9 @@ Tests the specified webhook. Sends an empty payload to the configured 
 
 #### URI
 
-`GET /api/3.6/sites/<site-id>/webhooks/<webhook-id>/test`
+```
+GET /api/3.6/sites/<site-id>/webhooks/<webhook-id>/test
+```
 
 #### Parameter Values
 
@@ -406,7 +423,9 @@ Deletes the specified webhook. 
 
 #### URI
 
-`DELETE /api/3.6/sites/<site-id>/webhooks/<webhook-id>`
+```
+DELETE /api/3.6/sites/<site-id>/webhooks/<webhook-id>
+```
 
 #### Parameter Values
 
@@ -428,7 +447,75 @@ None 
 
 ### Update a Webhook  
 
-To modify a webhook after it has been created, delete it and recreate it.
+Modify the properties of an existing webhook.
+
+#### URI
+
+```
+PUT /api/3.6/sites/<site-id>/webhooks/<webhook-id>
+```
+
+#### Parameter Values
+
+`site-id` The ID of the site that contains the webhook to be updated.  
+  
+`webhook-id` The ID of the webhook to be updated.  
+
+#### Request Body
+
+```
+<tsRequest>  
+  <webhook name="webhook-name" isEnabled="webhook-enabled-flag" statusChangeReason="reason-for-disablement">  
+    <webhook-source>  
+      <webhook-source-api-event-name />  
+    </webhook-source>  
+    <webhook-destination>  
+      <webhook-destination-http method="POST" url="url" />  
+    </webhook-destination>
+  </webhook>  
+</tsRequest>
+```
+
+#### Attribute Values
+
+`webhook-name`   Required. A name for the webhook.
+
+`webhook-source-api-event-name`   Required. The API event name for the source event. It must be one of the supported events, such as, \<webhook-source-event-datasource-refresh-started />  
+
+`url`   The destination URL for the webhook. The webhook destination URL must be https and have a valid certificate.
+
+`webhook-enabled-flag`   Optional, boolean. If `true` (default), the updated webhook is enabled. If `false` then the webhook will be disabled.
+
+`reason-for-disablement`   The reason a webhook is disabled. 
+
+- If `isEnabled` set to `true`, omit this parameter from your request to create a webhook, or set the value of `statusChangeReason` to an empty string. Providing a reason value when creating an enabled webhook will result in an error (400127).
+- If `isEnabled` set to `false`, then unless you provide a value for `statusChangeReason` it will default to "Webhook disabled by user".
+  
+#### Response Code
+
+`201` Success.
+
+`400` Error 400127: `statusChangeReason` was provided with `isEnabled` = `true` 
+
+#### Response Body
+
+```
+<tsResponse>  
+    <webhook id="webhook-id" name="webhook-name"  isEnabled="true" statusChangeReason="">  
+        <webhook-source>  
+            <webhook-source-api-event-name />  
+        </webhook-source>  
+        <webhook-destination>  
+            <webhook-destination-http method="POST" url="url"/>  
+        </webhook-destination>  
+        <owner id="webhook_owner_luid" name="webhook_owner_name"/>
+    </webhook>  
+</tsResponse>
+```
+
+#### Response Headers
+
+`Location: /api/<api-version>/sites/<site-id>/webhooks/<new-webhook-id>`  
 
 ## <a id="behavior"></a>Tableau Webhooks Behavior
 
