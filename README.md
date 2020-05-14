@@ -273,8 +273,6 @@ POST /api/3.6/sites/<site-id>/webhooks
 
 `201` Success.
 
-`400` Error 400127: `statusChangeReason` was provided with `isEnabled` = `true` 
-
 #### Response Body
 
 ```
@@ -447,7 +445,7 @@ Modify the properties of an existing webhook.
 #### URI
 
 ```
-PUT /api/3.6/sites/<site-id>/webhooks/<webhook-id>
+PUT /api/3.8/sites/<site-id>/webhooks/<webhook-id>
 ```
 
 #### Parameter Values
