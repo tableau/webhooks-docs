@@ -25,6 +25,8 @@ includes information about the event. The payload includes the ID of the
 object in question so that the Tableau REST API can be used to get
 additional information or take further action. 
 
+See [what's new in the latest release of Tableau webhooks](#whatsnew).
+
 Learn more about [Tableau Webhooks Behavior](#behavior). 
 
 ## <a id="prerequisites"></a>Prerequisites  
