@@ -516,3 +516,7 @@ PUT /api/3.8/sites/<site-id>/webhooks/<webhook-id>
  
 - When a server that has been sent a webhook request does not reply with a HTTP success code, the webhook will retry the request three times with diminishing frequency. (A HTTP success code is defined as any number in the [2xx range](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_Success).)
 
+## <a id="whatsnew"></a>Tableau Webhooks Wat's New?
+
+### 2020.2: Enable/Disable and Update Webhooks
+You can now update the properties of an existing webhook without deleting and recreating it. When you create or update a webhook you can specify whether it is enabled or disabled and if you update from enabled to disabled you can supply a reason that is visible to users. 
