@@ -96,19 +96,14 @@ Content of details.xml:
 ```
 <tsRequest>
 
-  <webhook name="my_first_webhook">
+  <webhook name="my_first_webhook"   
+    event="webhook-source-event-datasource-created" >
 
-    <webhook-source>
+      <webhook-destination>
 
-      <webhook-source-event-datasource-created />
+        <webhook-destination-http method="POST" url="<URL>" />
 
-    </webhook-source>
-
-    <webhook-destination>
-
-      <webhook-destination-http method="POST" url="<URL>" />
-
-    </webhook-destination>
+      </webhook-destination>
 
   </webhook>
 
@@ -247,16 +242,22 @@ POST /api/3.6/sites/<site-id>/webhooks
 #### Request Body
 
 ```
-<tsRequest>  
-  <webhook name="webhook-name" isEnabled="webhook-enabled-flag" >  
-    <webhook-source>  
-      <webhook-source-api-event-name />  
-    </webhook-source>  
-    <webhook-destination>  
-      <webhook-destination-http method="POST" url="url" />  
-    </webhook-destination>
-  </webhook>  
-</tsRequest>
+<tsResponse>  
+  <webhook 
+    id="webhook-id" 
+    name="webhook-name" 
+    isEnabled="true"  
+    statusChangeReason=""
+    event="webhook-source-api-event-name">  
+      <webhook-source>  
+        <webhook-source-api-event-name />  
+      </webhook-source>  
+      <webhook-destination> 
+        <webhook-destination-http method="POST" url="url"/>  
+      </webhook-destination>
+      <owner id="webhook_owner_luid" name="webhook_owner_name"/>
+  </webhook>  
+</tsResponse>
 ```
 
 #### Attribute Values
@@ -264,6 +265,13 @@ POST /api/3.6/sites/<site-id>/webhooks
 `webhook-name`   Required. A name for the webhook.
 
 `webhook-source-api-event-name`   Required. The API event name for the source event. It must be one of the supported events, such as, \<webhook-source-event-datasource-refresh-started />  
+
+
+> Note:
+> Use the `event` attribute of the webhook to specify the triggering API event for the webhook. 
+> 
+> The `webhook-source` element serves the same purpose but is being deprecated in future versions of Tableau webhooks. 
+> If both `events` and `webhook-source` are specified, their values must match. If either are specified, with the other being `NULL`, then the named event becomes the webhook trigger, whether the element containing the event name is `event` or `webhook-source`. 
 
 `url`   The destination URL for the webhook. The webhook destination URL must be https and have a valid certificate.
 
@@ -277,15 +285,20 @@ POST /api/3.6/sites/<site-id>/webhooks
 
 ```
 <tsResponse>  
-    <webhook id="webhook-id" name="webhook-name"  isEnabled="true" statusChangeReason="">  
-        <webhook-source>  
-            <webhook-source-api-event-name />  
-        </webhook-source>  
-        <webhook-destination>  
-            <webhook-destination-http method="POST" url="url"/>  
-        </webhook-destination>  
-        <owner id="webhook_owner_luid" name="webhook_owner_name"/>
-    </webhook>  
+  <webhook 
+    id="webhook-id" 
+    name="webhook-name" 
+    isEnabled="true"  
+    statusChangeReason=""
+    event="webhook-source-api-event-name">  
+      <webhook-source>  
+        <webhook-source-api-event-name />  
+      </webhook-source>  
+      <webhook-destination> 
+        <webhook-destination-http method="POST" url="url"/>  
+      </webhook-destination>
+      <owner id="webhook_owner_luid" name="webhook_owner_name"/>
+  </webhook>  
 </tsResponse>
 ```
 
@@ -321,15 +334,20 @@ None 
 
 ```
 <tsResponse>  
-    <webhook id="webhook-id" name="webhook-name" isEnabled="true" statusChangeReason="">  
-        <webhook-source>  
-            <webhook-source-api-event-name />  
-        </webhook-source>  
-        <webhook-destination>  
-            <webhook-destination-http method="POST" url="url"/>  
-        </webhook-destination>  
-        <owner id="webhook_owner_luid" name="webhook_owner_name"/>
-    </webhook>  
+  <webhook 
+    id="webhook-id" 
+    name="webhook-name" 
+    isEnabled="true"  
+    statusChangeReason=""
+    event="webhook-source-api-event-name">  
+      <webhook-source>  
+        <webhook-source-api-event-name />  
+      </webhook-source>  
+      <webhook-destination> 
+        <webhook-destination-http method="POST" url="url"/>  
+      </webhook-destination>
+      <owner id="webhook_owner_luid" name="webhook_owner_name"/>
+  </webhook>  
 </tsResponse>
 ```
 
@@ -360,16 +378,21 @@ None 
 ```
 <tsResponse>  
    <webhooks>  
-      <webhook id="webhook-id" name="webhook-name" isEnabled="true" statusChangeReason="">  
-        <webhook-source>  
-            <webhook-source-api-event-name />  
-        </webhook-source>  
-        <webhook-destination>  
-            <webhook-destination-http method="POST" url="url"/>  
-        </webhook-destination>
-        <owner id="webhook_owner_luid" name="webhook_owner_name"/>
-       </webhook>  
-       <!--  ... additional webhooks ...  -->
+      <webhook 
+        id="webhook-id" 
+        name="webhook-name" 
+        isEnabled="true"  
+        statusChangeReason=""
+        event="webhook-source-api-event-name">  
+          <webhook-source>  
+              <webhook-source-api-event-name />  
+          </webhook-source>  
+          <webhook-destination>  
+              <webhook-destination-http method="POST" url="url"/>  
+          </webhook-destination>
+          <owner id="webhook_owner_luid" name="webhook_owner_name"/>
+      </webhook>  
+      <!--  ... additional webhooks ...  -->
    </webhooks>  
 </tsResponse>  
 ```
@@ -458,13 +481,16 @@ PUT /api/3.8/sites/<site-id>/webhooks/<webhook-id>
 
 ```
 <tsRequest>  
-  <webhook name="webhook-name" isEnabled="webhook-enabled-flag" statusChangeReason="reason-for-disablement">  
-    <webhook-source>  
-      <webhook-source-api-event-name />  
-    </webhook-source>  
-    <webhook-destination>  
-      <webhook-destination-http method="POST" url="url" />  
-    </webhook-destination>
+  <webhook name="webhook-name" 
+     isEnabled="webhook-enabled-flag" 
+     statusChangeReason="reason-for-disablement"
+     event="webhook-source-api-event-name">  
+      <webhook-source>  
+        <webhook-source-api-event-name />  
+      </webhook-source>  
+      <webhook-destination>  
+        <webhook-destination-http method="POST" url="url" />  
+      </webhook-destination>
   </webhook>  
 </tsRequest>
 ```
@@ -473,7 +499,13 @@ PUT /api/3.8/sites/<site-id>/webhooks/<webhook-id>
 
 `webhook-name`   Required. A name for the webhook.
 
-`webhook-source-api-event-name`   Required. The API event name for the source event. It must be one of the supported events, such as, \<webhook-source-event-datasource-refresh-started />  
+`webhook-source-api-event-name`   Required. The API event name for the source event. It must be one of the supported events, such as, \<webhook-source-event-datasource-refresh-started />.
+
+> Note:
+> Use the `event` attribute of the webhook to specify the triggering API event for the webhook. 
+> 
+> The `webhook-source` element serves the same purpose but is being deprecated in future versions of Tableau webhooks. 
+> If both `events` and `webhook-source` are specified, their values must match. If either are specified, with the other being `NULL`, then the named event becomes the webhook trigger, whether the element containing the event name is `event` or `webhook-source`.     
 
 `url`   The destination URL for the webhook. The webhook destination URL must be https and have a valid certificate.
 
@@ -494,7 +526,12 @@ PUT /api/3.8/sites/<site-id>/webhooks/<webhook-id>
 
 ```
 <tsResponse>  
-    <webhook id="webhook-id" name="webhook-name"  isEnabled="true" statusChangeReason="">  
+    <webhook 
+      id="webhook-id" 
+      name="webhook-name"  
+      isEnabled="true" 
+      statusChangeReason=""
+      event="webhook-source-api-event-name">  
         <webhook-source>  
             <webhook-source-api-event-name />  
         </webhook-source>  
