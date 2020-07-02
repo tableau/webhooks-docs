@@ -290,7 +290,7 @@ _(One or the other is required.)_ The name of the Tableau event that triggers 
     name="webhook-name" 
     isEnabled="true"  
     statusChangeReason=""
-    event="DatasourceRefreshStarted">  
+    event="api-event-name">  
       <webhook-source>  
         <webhook-source-api-event-name />  
       </webhook-source>  
