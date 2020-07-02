@@ -244,7 +244,7 @@ POST /api/3.6/sites/<site-id>/webhooks
 #### Request Body
 
 ```
-<tsResponse>  
+<tsRequest>  
   <webhook 
     name="webhook-name" 
     isEnabled="true"  
@@ -256,7 +256,7 @@ POST /api/3.6/sites/<site-id>/webhooks
         <webhook-destination-http method="POST" url="url"/>  
       </webhook-destination>
   </webhook>  
-</tsResponse>
+</tsRequest>
 ```
 
 #### Attribute Values
