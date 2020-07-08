@@ -4,7 +4,7 @@
 - [Prerequisites](#prerequisites)
 - [Set Up a Webhook Using Postman](#postman)
 - [Set Up a Webhook Using cURL](#curl)
-- [Events](#events)
+- [Trigger Events](#events)
 - [Payloads](#payloads)
 - [Tableau Server REST API Endpoints for Webhooks](#endpoints)
 - [Tableau Webhooks Behavior](#behavior)
@@ -56,7 +56,7 @@ using Postman.
 
 1. Open the **MANAGE ENVIRONMENTS** dialog from the gear icon, open **Tableau Webhooks** variables and use the site id and token to set **CURRENT VALUE** of the `site_id` and `tableau_auth_token` variables.
 
-1. In the list of requests, click **Create a webhook**. In the request body, enter a webhook `name`, a Tableau trigger event () from the [Trigger Events](#events) table, and a destination `url`. The destination URL must be https and have a valid certificate.
+1. In the list of requests, click **Create a webhook**. In the request body, enter a webhook `name`, a Tableau trigger event name from the [Trigger Events](#events) table, and a destination `url`. The destination URL must be https and have a valid certificate.
 
 1. Click **Send**, and then use the ID of your new webhook from the response body to set the `webhook-id` environment variable in the **MANAGE ENVIRONMENTS** dialog.
 
@@ -265,9 +265,9 @@ POST /api/3.6/sites/<site-id>/webhooks
 
 `api-event-name`  | `webhook-source-api-event-name`   
 
-_(One or the other is required.)_ The name of the Tableau event that triggers your webhook. The event name  must be one of the supported events listed in the [Triggering Events](#events) table. Note that `event` and `webhook-source` use different name values for the same event.  
+_(One or the other is required.)_ The name of the Tableau event that triggers your webhook. The event name  must be one of the supported events listed in the [Trigger Events](#events) table. Note that `event` and `webhook-source` use different name values for the same event.  
 
-> Note:
+> **Recommended**:
 > Use the `event` attribute of the webhook to specify the triggering API event for the webhook. 
 > 
 > The `webhook-source` element serves the same purpose but is being deprecated in future versions of Tableau webhooks. 
@@ -502,9 +502,9 @@ PUT /api/3.8/sites/<site-id>/webhooks/<webhook-id>
 
 `api-event-name`  | `webhook-source-api-event-name`  
 
- Optional. The name of the Tableau event that triggers your webhook. The event name  must be one of the supported events listed in the [Triggering Events](#events) table. Note that `event` and `webhook-source` use different name values for the same event.  
+ Optional. The name of the Tableau event that triggers your webhook. You can update the trigger event for your webhook by specifying one of the supported events listed in the [Trigger Events](#events) table for either `event` or `webhook-source`. Note that `event` and `webhook-source` use different name values for the same event. 
 
-> Note:
+> **Recommended**:
 > Use the `event` attribute of the webhook to specify the triggering API event for the webhook. 
 > 
 > The `webhook-source` element serves the same purpose but is being deprecated in future versions of Tableau webhooks. 
