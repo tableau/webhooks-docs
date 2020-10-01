@@ -7,6 +7,8 @@
 - [Trigger Events](#events)
 - [Payloads](#payloads)
 - [Tutorials](#tutorials)
+  - [Set Up a Webhook with Glitch and If This The That](#tutorials)
+  - [Set up a Webhook with Glitch and Slack](#tutorials)
 - [Tableau Server REST API Endpoints for Webhooks](#endpoints)
 - [Tableau Webhooks Behavior](#behavior)
 
@@ -207,7 +209,7 @@ same:  
   "created_at":"2018-11-15T17:14:45Z"
 
 }
-[Glitch](http://glitch.com)
+
 ```
 
 | Field         | Description                                                                          |
@@ -236,7 +238,7 @@ In this tutorial, you can learn how to use a [Glitch](http://glitch.com) project
 
 ### API Version  
 
-Tableau REST API endpoints for managing your webhooks are available in API version 3.6 API. Tshe base URL for this API version is: `https://{{server}}/api/{API_version_number}/`.
+Tableau REST API endpoints for managing your webhooks are available in API version 3.6 API. The base URL for this API version is: `https://{{server}}/api/{API_version_number}/`.
 
 ### Authentication  
 
