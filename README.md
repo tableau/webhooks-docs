@@ -6,6 +6,9 @@
 - [Set Up a Webhook Using cURL](#curl)
 - [Trigger Events](#events)
 - [Payloads](#payloads)
+- [Tutorials](#tutorials)
+  - [Set Up a Webhook with Glitch and If This The That](#tutorials)
+  - [Set up a Webhook with Glitch and Slack](#tutorials)
 - [Tableau Server REST API Endpoints for Webhooks](#endpoints)
 - [Tableau Webhooks Behavior](#behavior)
 
@@ -217,11 +220,25 @@ same:  
 | site_luid            | LUID for the site that contains the workbook.                                             |
 | resource_luid        | The workbook ID.                                                                          |
 
+## <a id="tutorials"></a>Webhooks Tutorials
+
+### Set up a Tableau Webhook Using Glitch and If This Then That
+
+In this tutorial, you can learn how to set up a [Glitch](http://glitch.com) project with [If This Then That](https://ifttt.com/) (IFTTT) as the service that processes your webhook message.
+
+- [Send a message when a workbook is created](https://github.com/tableau/datadev-hackathon/wiki/Send-a-notification-when-a-workbook-is-created)
+
+### Integrate Tableau Webhooks with Slack Using Glitch
+
+In this tutorial, you can learn how to use a [Glitch](http://glitch.com) project to integrate your webhook message into [Slack](https://slack.com). Using these techniques can help you avoid commonly seen HTTP 400 errors.
+
+- [Send a Slack notification when a workbook is created](https://github.com/tableau/datadev-hackathon/wiki/Send-a-Slack-notification-when-a-workbook-is-updated)
+
 ## <a id="endpoints"></a>Tableau Server REST API Endpoints for Webhooks  
 
 ### API Version  
 
-All REST API endpoints for the initial release of webhooks are under the 3.6 API version. The base URL for this API version is: `https://{{server}}/api/3.6/`.
+Tableau REST API endpoints for managing your webhooks are available in API version 3.6 API. The base URL for this API version is: `https://{{server}}/api/{API_version_number}/`.
 
 ### Authentication  
 
