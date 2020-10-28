@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "35581a6b-3c2f-43f1-8c1e-220ed7c9f8da",
+		"_postman_id": "e01426ed-528c-4564-8702-caab50a853d7",
 		"name": "Tableau Webhooks Requests",
 		"description": "Work with the developer preview of webhooks for Tableau. This collection contains all REST API calls needed to create, delete, list, and test webhooks. Syntax is provided for both XML and JSON payloads. For convenience the collection also contains variables that you need to set for your server and, after signin, the site ID and auth token.\n\nSee also https://github.com/tableau/webhooks-docs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -25,7 +25,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"credentials\": {\r\n     \"site\": {\r\n        \"contentUrl\": \"\"\r\n     },\r\n     \"name\": \"{{username}}\",\r\n     \"password\": \"{{password}}\"\r\n  }\r\n}"
+							"raw": "{\r\n  \"credentials\": {\r\n     \"site\": {\r\n        \"contentUrl\": \"{{content-url}}\"\r\n     },\r\n     \"name\": \"{{username}}\",\r\n     \"password\": \"{{password}}\"\r\n  }\r\n}"
 						},
 						"url": {
 							"raw": "{{server}}/api/3.6/auth/signin",
@@ -59,7 +59,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"credentials\": {\r\n     \"site\": {\r\n        \"contentUrl\": \"\"\r\n     },\r\n     \"personalAccessTokenName\": \"{{pat-name}}\",\r\n     \"personalAccessTokenSecret\": \"{{pat-secret}}\"\r\n  }\r\n}"
+							"raw": "{\r\n  \"credentials\": {\r\n     \"site\": {\r\n        \"contentUrl\": \"{{content-url}}\"\r\n     },\r\n     \"personalAccessTokenName\": \"{{pat-name}}\",\r\n     \"personalAccessTokenSecret\": \"{{pat-secret}}\"\r\n  }\r\n}"
 						},
 						"url": {
 							"raw": "{{server}}/api/3.6/auth/signin",
@@ -160,7 +160,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"webhook\": {\r\n      \"webhook-source\": {\r\n         \"{{webhook-source-api-event-name}}\": {}\r\n      },\r\n      \"webhook-destination\": {\r\n         \"webhook-destination-http\": {\r\n            \"method\": \"POST\",\r\n            \"url\": \"{{webhook-url}}\"\r\n         }\r\n      },\r\n      \"name\": \"{{webhook-name}}\"\r\n   }\r\n}"
+							"raw": "{\r\n   \"webhook\": {\r\n      \"webhook-source\": {\r\n         \"{{webhook-event}}\": {}\r\n      },\r\n      \"webhook-destination\": {\r\n         \"webhook-destination-http\": {\r\n            \"method\": \"POST\",\r\n            \"url\": \"{{webhook-url}}\"\r\n         }\r\n      },\r\n      \"name\": \"{{webhook-name}}\"\r\n   }\r\n}"
 						},
 						"url": {
 							"raw": "{{server}}/api/3.6/sites/{{site-id}}/webhooks",
@@ -176,6 +176,125 @@
 							]
 						},
 						"description": "Create a new webhook on the given site using the name, event type, and destination URL provided."
+					},
+					"response": []
+				},
+				{
+					"name": "Create a webhook (2020.3+)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Tableau-Auth",
+								"value": "{{tableau-auth-token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"webhook\": {\r\n      \"webhook-destination\": {\r\n         \"webhook-destination-http\": {\r\n            \"method\": \"POST\",\r\n            \"url\": \"{{webhook-url}}\"\r\n         }\r\n      },\r\n      \"event\": \"{{webhook-event}}\",\r\n      \"name\": \"{{webhook-name}}\"\r\n   }\r\n}"
+						},
+						"url": {
+							"raw": "{{server}}/api/3.9/sites/{{site-id}}/webhooks",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"3.9",
+								"sites",
+								"{{site-id}}",
+								"webhooks"
+							]
+						},
+						"description": "Create a new webhook on the given site using the name, event type, and destination URL provided. This is for Tableau version 2020.3+ (api v3.9+)."
+					},
+					"response": []
+				},
+				{
+					"name": "Update a webhook (2020.2+)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Tableau-Auth",
+								"value": "{{tableau-auth-token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"webhook\": {\r\n      \"webhook-source\": {\r\n         \"{{webhook-event}}\": {}\r\n      },\r\n      \"webhook-destination\": {\r\n         \"webhook-destination-http\": {\r\n            \"method\": \"POST\",\r\n            \"url\": \"{{webhook-url}}\"\r\n         }\r\n      },\r\n      \"name\": \"{{webhook-name}}\",\r\n      \"isEnabled\": \"{{webhook-isenabled}}\",\r\n      \"statusChangeReason\": \"{{webhook-statuschangereason}}\"\r\n   }\r\n}"
+						},
+						"url": {
+							"raw": "{{server}}/api/3.8/sites/{{site-id}}/webhooks/{{webhook-id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"3.8",
+								"sites",
+								"{{site-id}}",
+								"webhooks",
+								"{{webhook-id}}"
+							]
+						},
+						"description": "Update an existing webhook's name, url, or event. You can also enable or disable (can also provide comment for disable) an existing webhook. This is for Tableau version 2020.2+ (api v3.8+)."
+					},
+					"response": []
+				},
+				{
+					"name": "Update a webhook (2020.3+)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Tableau-Auth",
+								"value": "{{tableau-auth-token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"webhook\": {\r\n      \"webhook-destination\": {\r\n         \"webhook-destination-http\": {\r\n            \"method\": \"POST\",\r\n            \"url\": \"{{webhook-url}}\"\r\n         }\r\n      },\r\n      \"event\": \"{{webhook-event}}\",\r\n      \"name\": \"{{webhook-name}}\",\r\n      \"isEnabled\": \"{{webhook-isenabled}}\",\r\n      \"statusChangeReason\": \"{{webhook-statuschangereason}}\"\r\n   }\r\n}"
+						},
+						"url": {
+							"raw": "{{server}}/api/3.9/sites/{{site-id}}/webhooks/{{webhook-id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"3.9",
+								"sites",
+								"{{site-id}}",
+								"webhooks",
+								"{{webhook-id}}"
+							]
+						},
+						"description": "Update an existing webhook's name, url, or event. You can also enable or disable (can also provide comment for disable) an existing webhook. This is for Tableau version 2020.3+ (api v3.9+)."
 					},
 					"response": []
 				},
@@ -254,7 +373,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "ca634686-e322-4660-9162-df5065c654fc",
+						"id": "76bbc008-b59c-4794-b23c-1aff477493dd",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -264,7 +383,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "101cf1e5-1cf9-4cd0-9679-f4342e38831e",
+						"id": "c9c5b18c-35fe-4982-9016-7a1e8e0436a0",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -296,7 +415,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "<tsRequest>\r\n  <credentials \r\n\t\tname=\"{{username}}\"\r\n\t\tpassword=\"{{password}}\" >\r\n    <site contentUrl=\"\" />\r\n  </credentials>\r\n</tsRequest>",
+							"raw": "<tsRequest>\r\n  <credentials \r\n\t\tname=\"{{username}}\"\r\n\t\tpassword=\"{{password}}\" >\r\n    <site contentUrl=\"{{content-url}}\" />\r\n  </credentials>\r\n</tsRequest>",
 							"options": {
 								"raw": {
 									"language": "xml"
@@ -338,7 +457,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "<tsRequest>\r\n  <credentials \r\n\t\tpersonalAccessTokenName=\"{{username}}\" \r\n\t\tpersonalAccessTokenSecret=\"{{password}}\" >\r\n  \t<site contentUrl=\"\" />\r\n  </credentials>\r\n</tsRequest>",
+							"raw": "<tsRequest>\r\n  <credentials \r\n\t\tpersonalAccessTokenName=\"{{pat-name}}\" \r\n\t\tpersonalAccessTokenSecret=\"{{pat-secret}}\" >\r\n  \t<site contentUrl=\"{{content-url}}\" />\r\n  </credentials>\r\n</tsRequest>",
 							"options": {
 								"raw": {
 									"language": "xml"
@@ -447,7 +566,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "<tsRequest>\n  <webhook name=\"{{webhook-name}}\">\n    <webhook-source>\n      <{{webhook-source-api-event-name}} />\n    </webhook-source>\n    <webhook-destination>\n      <webhook-destination-http method=\"POST\" url=\"{{url}}\" />\n    </webhook-destination>\n  </webhook>\n</tsRequest>"
+							"raw": "<tsRequest>\n  <webhook name=\"{{webhook-name}}\">\n    <webhook-source>\n      <{{webhook-event}} />\n    </webhook-source>\n    <webhook-destination>\n      <webhook-destination-http method=\"POST\" url=\"{{webhook-url}}\" />\n    </webhook-destination>\n  </webhook>\n</tsRequest>"
 						},
 						"url": {
 							"raw": "{{server}}/api/3.6/sites/{{site-id}}/webhooks",
@@ -462,7 +581,129 @@
 								"webhooks"
 							]
 						},
-						"description": "Create a new webhook on the given site using the event type, name, and destination URL provided."
+						"description": "Create a new webhook on the given site using the name, event type, and destination URL provided."
+					},
+					"response": []
+				},
+				{
+					"name": "Create a webhook (2020.3+)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Tableau-Auth",
+								"value": "{{tableau-auth-token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/xml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest>\n  <webhook name=\"{{webhook-name}}\" event=\"{{webhook-event}}\" >\n    <webhook-destination>\n      <webhook-destination-http method=\"POST\" url=\"{{webhook-url}}\" />\n    </webhook-destination>\n  </webhook>\n</tsRequest>"
+						},
+						"url": {
+							"raw": "{{server}}/api/3.9/sites/{{site-id}}/webhooks",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"3.9",
+								"sites",
+								"{{site-id}}",
+								"webhooks"
+							]
+						},
+						"description": "Create a new webhook on the given site using the name, event type, and destination URL provided. This is for Tableau version 2020.3+ (api v3.9+)."
+					},
+					"response": []
+				},
+				{
+					"name": "Update a webhook (2020.2+)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Tableau-Auth",
+								"value": "{{tableau-auth-token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest>\n  <webhook name=\"{{webhook-name}}\" isEnabled=\"{{webhook-isenabled}}\" statusChangeReason=\"{{webhook-statuschangereason}}\">\n    <webhook-source>\n      <{{webhook-event}} />\n    </webhook-source>\n    <webhook-destination>\n      <webhook-destination-http method=\"POST\" url=\"{{webhook-url}}\" />\n    </webhook-destination>\n  </webhook>\n</tsRequest>"
+						},
+						"url": {
+							"raw": "{{server}}/api/3.8/sites/{{site-id}}/webhooks/{{webhook-id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"3.8",
+								"sites",
+								"{{site-id}}",
+								"webhooks",
+								"{{webhook-id}}"
+							]
+						},
+						"description": "Update an existing webhook's name, url, or event. You can also enable or disable (can also provide comment for disable) an existing webhook. This is for Tableau version 2020.2+ (api v3.8+)."
+					},
+					"response": []
+				},
+				{
+					"name": "Update a webhook (2020.3+)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Tableau-Auth",
+								"value": "{{tableau-auth-token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/xml"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/xml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<tsRequest>\n  <webhook name=\"{{webhook-name}}\" event=\"{{webhook-event}}\" isEnabled=\"{{webhook-isenabled}}\" statusChangeReason=\"{{webhook-statuschangereason}}\" >\n    <webhook-destination>\n      <webhook-destination-http method=\"POST\" url=\"{{webhook-url}}\" />\n    </webhook-destination>\n  </webhook>\n</tsRequest>"
+						},
+						"url": {
+							"raw": "{{server}}/api/3.9/sites/{{site-id}}/webhooks/{{webhook-id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"api",
+								"3.9",
+								"sites",
+								"{{site-id}}",
+								"webhooks",
+								"{{webhook-id}}"
+							]
+						},
+						"description": "Update an existing webhook's name, url, or event. You can also enable or disable (can also provide comment for disable) an existing webhook. This is for Tableau version 2020.3+ (api v3.9+)."
 					},
 					"response": []
 				},
@@ -543,7 +784,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "6c264144-3e70-47b1-b6ce-c5f9993ab24c",
+						"id": "4b6f4071-0ba7-435c-9265-352e84a906ad",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -553,7 +794,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8f5e51a2-045d-499b-91a1-4627a55996c3",
+						"id": "1f93d542-1172-435c-adb3-091b3330b851",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -568,7 +809,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "7871142f-77c4-47b2-9bfa-bc897a556676",
+				"id": "356572bb-b262-4e2f-96d7-90015283b46f",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -578,7 +819,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "8c4f5f91-5cfc-4298-825a-a79aab1ffcc9",
+				"id": "641d652e-8d7e-4936-a7c8-cfd3de029696",
 				"type": "text/javascript",
 				"exec": [
 					""

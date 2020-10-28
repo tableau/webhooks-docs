@@ -55,11 +55,11 @@ using Postman.
 
 1. To configure environment variables for webhooks, click the gear icon near the environment dropdown. In the **MANAGE ENVIRONMENTS** dialog, select **Tableau Webhooks**. Replace the placeholder URL for the `server` variable in the **CURRENT VARIABLE** column with your server URL (like `https://10ax.online.tableau.com`). Close the dialog.
 
-1. In the **Tableau Webhooks Requests** collection, choose the **Sign-in** request. For Tableau Online or a named server site, add the `contentURL` of your site (like `my_site` in `https://10ax.online.tableau.com/site/my_site/projects`). Click **Send**. The response body contains the site id and a token.  
+1. In the **Tableau Webhooks Requests** collection, choose the **Sign-in** request. You can choose either the username/password method or the personal access token method. Fill in the `content-url` environment variable for your site (content-url value would be `my_site` if your site url looks like this - `https://10ax.online.tableau.com/site/my_site/projects`). Click **Send**. The response body contains the site id and a token.  
 
 1. Open the **MANAGE ENVIRONMENTS** dialog from the gear icon, open **Tableau Webhooks** variables and use the site id and token to set **CURRENT VALUE** of the `site_id` and `tableau_auth_token` variables.
 
-1. In the list of requests, click **Create a webhook**. In the request body, enter a webhook `name`, a Tableau trigger event name from the [Trigger Events](#events) table, and a destination `url`. The destination URL must be https and have a valid certificate.
+1. In the list of requests, click **Create a webhook**. In the request body, there are 3 environment variables you must fill out in order to send a valid request. In the environment variable management dialog, provide a value for `webhook-name`, `webhook-event` (see [Trigger Events Table](#events), and `webhook-url` (destination URL must be https and have a valid certificate).
 
 1. Click **Send**, and then use the ID of your new webhook from the response body to set the `webhook-id` environment variable in the **MANAGE ENVIRONMENTS** dialog.
 
