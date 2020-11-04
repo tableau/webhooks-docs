@@ -49,21 +49,21 @@ using Postman.
 
 1. Download and install Postman from [https://www.getpostman.com/](https://www.getpostman.com/).
 
-1. Launch Postman and click **File** \> **Import** and then choose the Postman collection file you downloaded. 
+1. Launch Postman and click **File** \> **Import** and choose the Postman collection and environment files you downloaded then select **Import**.
 
 1. Choose the **Tableau Webhooks Requests** collection on the left, and then select **Tableau Webhooks** from the environment dropdown menu on the top right.
 
-1. To configure environment variables for webhooks, click the gear icon near the environment dropdown. In the **MANAGE ENVIRONMENTS** dialog, select **Tableau Webhooks**. Replace the placeholder URL for the `server` variable in the **CURRENT VARIABLE** column with your server URL (like `https://10ax.online.tableau.com`). Close the dialog.
+1. To configure environment variables for webhooks, click the sliders icon near the environment dropdown. In the **MANAGE ENVIRONMENTS** dialog, select **Tableau Webhooks**. Replace the placeholder URL for the `server` variable in the **CURRENT VARIABLE** column with your server URL (like `https://10ax.online.tableau.com`). Fill in the `content-url` environment variable for your site (content-url value would be `my_site` if your site url looks like this - `https://10ax.online.tableau.com/site/my_site/projects`). Add either your username and password or your Personal Access Token name and secret. Click **Update** and close the dialog.
 
-1. In the **Tableau Webhooks Requests** collection, choose the **Sign-in** request. You can choose either the username/password method or the personal access token method. Fill in the `content-url` environment variable for your site (content-url value would be `my_site` if your site url looks like this - `https://10ax.online.tableau.com/site/my_site/projects`). Click **Send**. The response body contains the site id and a token.  
+1. In the **Tableau Webhooks Requests** collection, choose the **Sign-in** request. You can choose either the username/password method or the personal access token method.  Click **Send**. The response body contains the site id and a token.  
 
-1. Open the **MANAGE ENVIRONMENTS** dialog from the gear icon, open **Tableau Webhooks** variables and use the site id and token to set **CURRENT VALUE** of the `site_id` and `tableau_auth_token` variables.
+1. Open the **MANAGE ENVIRONMENTS** dialog from the sliders icon, open **Tableau Webhooks** variables, and use the site id and token to set **CURRENT VALUE** of the `site_id` and `tableau_auth_token` variables.
 
 1. In the list of requests, click **Create a webhook**. In the request body, there are 3 environment variables you must fill out in order to send a valid request. In the environment variable management dialog, provide a value for `webhook-name`, `webhook-event` (see [Trigger Events Table](#events), and `webhook-url` (destination URL must be https and have a valid certificate).
 
 1. Click **Send**, and then use the ID of your new webhook from the response body to set the `webhook-id` environment variable in the **MANAGE ENVIRONMENTS** dialog.
 
-1. In the list of requests, choose **Test a webhook** and click  **Send**. Testing the webhook sends an empty payload to the configured destination URL of the webhook and returns the response from the server. This is useful for testing, to ensure that webhooks POSTs are being sent from Tableau and a response is returnedfrom the destination as expected.
+1. In the list of requests, choose **Test a webhook** and click  **Send**. Testing the webhook sends an empty payload to the configured destination URL of the webhook and returns the response from the server. This is useful for testing, to ensure that webhooks POSTs are being sent from Tableau and a response is returned from the destination as expected.
 
 ## <a id="curl"></a>Set Up a Webhook Using cURL
 
