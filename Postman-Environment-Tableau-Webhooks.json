@@ -1,14 +1,34 @@
 {
-	"id": "3ccf20c6-e07e-4c9f-85df-9a58bf98ad25",
+	"id": "cd970550-7659-4f6d-bec5-d593544d532f",
 	"name": "Tableau Webhooks",
 	"values": [
 		{
 			"key": "server",
-			"value": "https://replace-with-your-server-url",
+			"value": "",
 			"enabled": true
 		},
 		{
-			"key": "tableau-auth-token",
+			"key": "content-url",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "username",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "password",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "pat-name",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "pat-secret",
 			"value": "",
 			"enabled": true
 		},
@@ -18,12 +38,42 @@
 			"enabled": true
 		},
 		{
+			"key": "tableau-auth-token",
+			"value": "",
+			"enabled": true
+		},
+		{
 			"key": "webhook-id",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "webhook-name",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "webhook-event",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "webhook-url",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "webhook-isenabled",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "webhook-statuschangereason",
 			"value": "",
 			"enabled": true
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2019-09-26T01:02:00.658Z",
-	"_postman_exported_using": "Postman/7.8.0"
+	"_postman_exported_at": "2020-10-28T23:05:27.345Z",
+	"_postman_exported_using": "Postman/7.32.0"
 }
